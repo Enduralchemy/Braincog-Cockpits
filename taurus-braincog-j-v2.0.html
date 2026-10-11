@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#141F2B">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<title>BrainCog · TMR 2026 · J</title>
+<style>
+:root,:root.day{--bg:#F3F6F9;--card:#FFF;--card2:#E9EEF3;--line:#C2CED9;--line2:#8C9DAD;--ink:#141F2B;--ink2:#3B4A58;--acc:#085458;--acc2:#063E41;--ok:#1D5A25;--okbg:#EAF6E7;--warn:#6B3C00;--warnbg:#FDF2DE;--bad:#8E2118;--badbg:#FCECE9;--info:#1A4384;--infobg:#EBF2FC;--btn:#085458;--btnt:#FFF;--night:#141F2B;--river:#3FBFC4;--bink:#E9EFF4;--bdim:#AEBFCE}
+:root.night{--bg:#141F2B;--card:#1D2B3A;--card2:#172533;--line:#31465C;--line2:#46617A;--ink:#E9EFF4;--ink2:#AEBFCE;--acc:#3FBFC4;--acc2:#7FDDE0;--ok:#8FD082;--okbg:#1C3324;--warn:#F0B35C;--warnbg:#3A2A13;--bad:#FFA197;--badbg:#3E2224;--info:#9CC2EC;--infobg:#182C42;--btn:#3FBFC4;--btnt:#141F2B}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.45;background:var(--bg);color:var(--ink);padding:0 0 30px}
+.hd{padding:9px 14px 8px;background:var(--night);position:sticky;top:0;z-index:20}
+.hd .brow{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.hd .logo{display:flex;align-items:center;gap:7px;font-size:15px;font-weight:800;color:var(--river);white-space:nowrap}
+.hd .logo svg{width:22px;height:22px;flex:0 0 22px;display:block}
+.hd h1{font-size:15.5px;font-weight:800;color:var(--bink);text-align:right;line-height:1.2;flex:1}
+.hd h1 b{color:var(--river)}
+.hd .s{font-size:12.5px;color:var(--bdim);margin-top:5px;line-height:1.35}
+.tabs{display:flex;overflow-x:auto;border-bottom:.5px solid var(--line);background:var(--bg);position:sticky;top:64px;z-index:19;-webkit-overflow-scrolling:touch}
+.tb{flex:0 0 auto;padding:11px 12px;font-size:13.5px;font-weight:700;border:none;background:none;color:var(--ink2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;font-family:inherit}
+.tb.on{color:var(--acc);border-bottom-color:var(--acc)}
+.tc{display:none;padding:12px 14px}.tc.on{display:block}
+.sec{font-size:12px;font-weight:800;color:var(--ink2);letter-spacing:.1em;text-transform:uppercase;margin:16px 0 7px}
+.sec:first-child{margin-top:2px}
+.card{background:var(--card);border:.5px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.cmd{border-radius:14px;padding:16px;margin-bottom:10px;color:#fff;background:linear-gradient(135deg,#0F5E63,#141F2B)}
+.cmd.r{background:linear-gradient(135deg,#A32D2D,#6E1D1D)}
+.cmd.a{background:linear-gradient(135deg,#7A4800,#553200)}
+.cmd.g{background:linear-gradient(135deg,#2F6311,#1F450B)}
+.cmd.b{background:linear-gradient(135deg,#1A4384,#0E2449)}
+.cmd .k{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.cmd .v{font-size:27px;font-weight:800;line-height:1.14;margin:5px 0 4px}
+.cmd .s{font-size:14px;opacity:.93;line-height:1.45}
+.cmd .s b{font-weight:800}
+.pill{display:inline-block;font-size:12.5px;font-weight:800;padding:5px 11px;border-radius:999px;margin:0 4px 8px 0}
+.pill.r{background:var(--badbg);color:var(--bad)}.pill.a{background:var(--warnbg);color:var(--warn)}
+.pill.g{background:var(--okbg);color:var(--ok)}.pill.b{background:var(--infobg);color:var(--info)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:10px}
+.met{background:var(--card2);border:.5px solid var(--line);border-radius:10px;padding:9px 10px}
+.met .ml{font-size:11.5px;color:var(--ink2);font-weight:700;line-height:1.25}
+.met .mv{font-size:22px;font-weight:800;margin-top:2px}
+.met .ms{font-size:12px;color:var(--ink2);line-height:1.3}
+.met.g .mv{color:var(--ok)}.met.a .mv{color:var(--warn)}.met.d .mv{color:var(--bad)}.met.b .mv{color:var(--info)}
+.box{border-radius:11px;padding:11px 12px;font-size:13.5px;line-height:1.55;margin-bottom:9px;border:.5px solid}
+.box.r{background:var(--badbg);color:var(--bad);border-color:var(--bad)}
+.box.a{background:var(--warnbg);color:var(--warn);border-color:var(--warn)}
+.box.g{background:var(--okbg);color:var(--ok);border-color:var(--ok)}
+.box.b{background:var(--infobg);color:var(--info);border-color:var(--info)}
+.box b{font-weight:800}
+.act{display:flex;align-items:center;gap:10px;border-radius:12px;padding:11px 12px;margin-bottom:8px;border:.5px solid var(--line)}
+.act.cho{background:var(--warnbg);border-color:var(--warn)}.act.wat{background:var(--infobg);border-color:var(--info)}
+.act.na{background:var(--badbg);border-color:var(--bad)}
+.act .ai{font-size:22px;flex-shrink:0}.act .at{flex:1;min-width:0}
+.act .a1{font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.act .a2{font-size:19px;font-weight:800;line-height:1.2}
+.act .a3{font-size:12.5px;color:var(--ink2);margin-top:1px}
+.act .ar{text-align:right;flex-shrink:0}.act .av{font-size:14px;font-weight:800}
+.bt{border:none;border-radius:8px;background:var(--btn);color:var(--btnt);font-weight:800;font-size:13px;padding:9px 13px;cursor:pointer;font-family:inherit;margin-top:4px}
+.bt:active{transform:scale(.97)}.bt.sm{padding:7px 10px;font-size:12.5px}
+.bt.gh{background:transparent;color:var(--acc2);border:1.5px solid var(--acc2)}
+.row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.row .lbl{font-size:13px;color:var(--ink2);width:132px;flex-shrink:0;line-height:1.3}
+.row input,.row select{flex:1;min-width:0;width:0;font-size:16px;padding:9px 11px;min-height:44px;border-radius:9px;border:.5px solid var(--line2);background:var(--card);color:var(--ink);font-family:inherit}
+svg{display:block;width:100%;height:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:7px 2px;border-bottom:.5px solid var(--line);vertical-align:top;text-align:left}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2)}
+td.r,th.r{text-align:right;font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+.pm{width:44px;height:40px;border-radius:9px;border:.5px solid var(--line2);background:var(--card2);color:var(--ink);font-size:22px;font-weight:800;cursor:pointer;font-family:inherit;flex-shrink:0}
+.pm:active{transform:scale(.95)}
+.stk{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:.5px solid var(--line)}
+.stk:last-child{border-bottom:none}
+.stk .sn{flex:1;font-size:13.5px;line-height:1.3}
+.stk .sn i{font-style:normal;color:var(--ink2);font-size:12.5px;display:block}
+.stk .sb{width:40px;height:38px;border-radius:9px;border:.5px solid var(--line2);background:var(--card2);color:var(--ink);font-size:22px;font-weight:800;cursor:pointer;font-family:inherit;flex-shrink:0}
+.stk .sq{width:34px;text-align:center;font-size:16px;font-weight:800;color:var(--acc);flex-shrink:0}
+.bar{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
+.bar .bt2{flex:1;height:15px;border-radius:8px;background:var(--card2);border:.5px solid var(--line);overflow:hidden}
+.bar .bf{height:100%;background:var(--ok)}
+.note{font-size:12.5px;color:var(--ink2);line-height:1.6;margin-top:8px}
+.note.tip{background:var(--card2);border-radius:9px;padding:9px 11px}
+.sc{border:1.5px solid var(--line);border-radius:12px;padding:11px;background:var(--card)}
+.sc.rec{border-color:var(--ok);background:var(--okbg)}
+.sc .sl{font-size:12.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+.sc .sv{font-size:21px;font-weight:800;margin:4px 0 2px}
+.sc .ss{font-size:12px;color:var(--ink2);line-height:1.5}
+.wxs{display:flex;gap:2px;align-items:flex-end;height:62px;margin:8px 0 3px}
+.wxb{flex:1;border-radius:2px 2px 0 0;min-height:2px;position:relative}
+.wxl{display:flex;justify-content:space-between;font-size:11px;color:var(--ink2)}
+.thm{flex:0 0 auto;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--river);background:transparent;color:var(--river);font-size:17px;cursor:pointer}
+.chip{display:inline-block;font-size:11px;font-weight:800;padding:2px 7px;border-radius:5px;margin-right:4px;letter-spacing:.03em}
+.chip.hab{background:var(--badbg);color:var(--bad)}.chip.mud{background:var(--warnbg);color:var(--warn)}
+.chip.rough{background:var(--warnbg);color:var(--warn)}.chip.ford{background:var(--infobg);color:var(--info)}
+.chip.road{background:var(--card2);color:var(--ink2)}.chip.gravel{background:var(--card2);color:var(--ink2)}
+.chip.alpine{background:var(--badbg);color:var(--bad)}.chip.detour{background:var(--card2);color:var(--ink2)}
+.hid{display:none}
+</style></head><body>
+<div class="hd">
+  <div class="brow"><span class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" aria-hidden="true"><circle cx="120" cy="120" r="86" fill="none" stroke="currentColor" stroke-width="16"/><path d="M110.0 30.0L114.0 12.0L126.0 12.0L130.0 30.0ZM156.3 37.1L168.8 23.5L179.2 29.5L173.7 47.1ZM192.9 66.3L210.5 60.8L216.5 71.2L202.9 83.7ZM210.0 110.0L228.0 114.0L228.0 126.0L210.0 130.0ZM202.9 156.3L216.5 168.8L210.5 179.2L192.9 173.7ZM173.7 192.9L179.2 210.5L168.8 216.5L156.3 202.9ZM130.0 210.0L126.0 228.0L114.0 228.0L110.0 210.0ZM83.7 202.9L71.2 216.5L60.8 210.5L66.3 192.9ZM47.1 173.7L29.5 179.2L23.5 168.8L37.1 156.3ZM30.0 130.0L12.0 126.0L12.0 114.0L30.0 110.0ZM37.1 83.7L23.5 71.2L29.5 60.8L47.1 66.3ZM66.3 47.1L60.8 29.5L71.2 23.5L83.7 37.1Z" fill="currentColor"/><path d="M72 84 H158 a12 12 0 0 1 0 24 H80 a12 12 0 0 0 0 24 H158 a12 12 0 0 1 0 24 H72" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg>BrainCog</span>
+  <h1>TMR 2026 · <b>J · v2.0</b></h1><button class="thm" id="thm" aria-label="Day / night">☾</button></div>
+  <div class="s">Antalya → Erdemli · <b>1,438 km · 35,195 m</b> · official route <span id="offl"></span></div>
+</div>
+<div class="tabs" id="tabs">
+  <button class="tb on" data-t="0">Now</button>
+  <button class="tb" data-t="1">Weather</button>
+  <button class="tb" data-t="2">Sleep</button>
+  <button class="tb" data-t="3">Fuel</button>
+  <button class="tb" data-t="4">Route</button>
+  <button class="tb" data-t="5">Plan</button>
+  <button class="tb" data-t="6">Inputs</button>
+</div>
+<div class="tc on" id="t0"><div id="ck"></div></div>
+<div class="tc" id="t1"><div id="wx"></div></div>
+<div class="tc" id="t2"><div id="sl"></div></div>
+<div class="tc" id="t3"><div id="fu"></div></div>
+<div class="tc" id="t4"><div id="rt"></div></div>
+<div class="tc" id="t5"><div id="pl"></div></div>
+<div class="tc" id="t6">
+  <div class="sec">Where am I</div>
+  <div class="row"><span class="lbl">Distance done <i style="font-style:normal;color:var(--acc2)">km, from the Garmin</i></span><input type="number" id="i-km" value="0" step="0.1" min="0" max="1438"></div>
+  <div class="row"><span class="lbl">Garmin avg speed <i style="font-style:normal;color:var(--acc2)">km/h · Auto Pause OFF · 0 = use model</i></span><input type="number" id="i-spd" value="0" step="0.1" min="0"></div>
+  <div class="note tip">This is the one number everything else is built on. <b>The cockpit has no GPS</b> — it only knows where you are because you told it. Update it at every stop.</div>
+
+  <div class="sec">Live readings</div>
+  <div class="row"><span class="lbl">Current HR <i style="font-style:normal;color:var(--acc2)">bpm</i></span><input type="number" id="i-hr" value="0" min="0"></div>
+  <div class="row"><span class="lbl">Current NP <i style="font-style:normal;color:var(--acc2)">W</i></span><input type="number" id="i-np" value="0" min="0"></div>
+  <div class="row"><span class="lbl">Avg HR this ride</span><input type="number" id="i-ahr" value="0" min="0"></div>
+
+  <div class="sec">Weather — auto when there is signal</div>
+  <div id="wxc"></div>
+  <div class="row"><span class="lbl">Temp °C <i style="font-style:normal;color:var(--acc2)">now</i></span><input type="number" id="i-tmp" value="12"></div>
+  <div class="row"><span class="lbl">Wind m/s</span><input type="number" id="i-wind" value="0" min="0"></div>
+  <div class="row"><span class="lbl">Rain mm/h <i style="font-style:normal;color:var(--acc2)">now</i></span><input type="number" id="i-rain" value="0" step="0.5" min="0"></div>
+  <div class="row"><span class="lbl">Am I wet?</span><select id="i-wet"><option value="0">Dry</option><option value="1">Damp</option><option value="2">Soaked through</option></select></div>
+
+  <div class="sec">Body</div>
+  <div class="row"><span class="lbl">Sleep last 30 h <i style="font-style:normal;color:var(--acc2)">hours</i></span><input type="number" id="i-slp" value="4" step="0.25" min="0"></div>
+  <div class="row"><span class="lbl">Hours awake</span><input type="number" id="i-awk" value="6" step="0.5" min="0"></div>
+  <div class="row"><span class="lbl">Non-sleep stops <i style="font-style:normal;color:var(--acc2)">h/day — the big lever</i></span><input type="number" id="i-stop" value="2.5" step="0.25" min="0"></div>
+  <div class="row"><span class="lbl">Gut state</span><select id="i-gut"><option value="0">Calm — full fuelling</option><option value="1">Grumbling — cap 60 g/h</option><option value="2">Rebelling — cap 40 g/h</option></select></div>
+  <div class="row"><span class="lbl">Clock override <i style="font-style:normal;color:var(--acc2)">what-if, blank = live</i></span><input type="datetime-local" id="i-now"></div>
+
+  <div class="sec">Rider — editable</div>
+  <div class="g2">
+   <div class="row" style="margin:0"><span class="lbl" style="width:56px">kg</span><input type="number" id="r-kg" value="78"></div>
+   <div class="row" style="margin:0"><span class="lbl" style="width:56px">CHO g/h</span><input type="number" id="r-cho" value="90"></div>
+  </div>
+  <div class="g2">
+   <div class="row" style="margin:0"><span class="lbl" style="width:56px">Na mg/L</span><input type="number" id="r-na" value="700"></div>
+   <div class="row" style="margin:0"><span class="lbl" style="width:56px">Terrain</span><input type="number" id="r-ter" value="1.12" step="0.05" min="1" max="1.6"></div>
+  </div>
+  <div class="note tip">Speed comes from physics on his system mass at the power he actually held on days 2–6 of the Pan Celtic (201–219 W on 6–10% climbs), at the rolling losses that reproduce Valerio&rsquo;s D16 curve — so the 1.25 terrain factor means the same thing in both cockpits. <b>Na 700 mg/L is a guess</b>; no sweat data. His stops habit at Pan Celtic was 2.56 h/day, less than half Valerio&rsquo;s D16 5.5.</div>
+
+  <div class="sec">Vessels</div>
+  <div id="vess"></div>
+
+  <div class="sec">Reminders &amp; backup</div>
+  <div id="alx"></div>
+  <div style="display:flex;gap:8px;margin-top:10px">
+    <button class="bt gh" id="b-exp" style="flex:1">Export state</button>
+    <button class="bt gh" id="b-imp" style="flex:1">Restore</button>
+  </div>
+  <textarea id="bk" style="width:100%;height:60px;margin-top:8px;background:var(--card2);color:var(--ink);border:.5px solid var(--line);border-radius:9px;padding:8px;font-size:12.5px;font-family:monospace"></textarea>
+</div>
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   TMR 2026 — BrainCog v2.0.  Built on the OFFICIAL route (RWGPS 57516220).
+   The route is no longer a hypothesis. The rider model still is.
+   ═══════════════════════════════════════════════════════════════════════════ */
+const START=new Date(2026,9,14,9,0);      // Wed 14 Oct 09:00 local (UTC+3, no DST)
+const FINCUT=new Date(2026,9,25,0,0);     // Sat 24 Oct 24:00 — the only hard deadline
+const LAT=37.0, LON=33.0, TZ=3;
+/* Official TMR 2026 route — RideWithGPS 57516220, downloaded 11 Oct 2026.
+   1438.07 km, 35196 m climb (250 m smoothing; RWGPS says 34,849, Komoot 36,100).
+   66 organiser waypoints. Surface totals from Komoot. Nothing here is a guess
+   about the route any more — only the rider model is still a model. */
+const TOTAL=1438.07;
+const CLIMB=35196;
+const DESCENT=35196;
+const HIGH=3225;
+const HIGHKM=1069.7;
+const PROF=[[0.0,6],[4.65,32],[9.9,86],[22.15,898],[24.5,1094],[27.1,976],[28.05,978],[28.65,923],[29.4,921],[32.45,1119],[33.7,1113],[35.15,1048],[41.1,583],[42.8,526],[45.7,479],[46.45,486],[48.65,583],[50.55,701],[51.5,643],[52.8,677],[53.9,664],[55.75,574],[57.25,583],[58.25,658],[59.3,605],[63.0,573],[66.6,672],[67.8,743],[69.3,761],[70.45,825],[72.1,703],[73.85,692],[75.45,784],[76.4,758],[77.5,778],[78.9,869],[82.25,779],[83.65,789],[89.95,773],[91.4,856],[92.45,894],[93.4,897],[97.3,724],[98.15,720],[98.85,775],[100.55,703],[102.15,696],[104.35,496],[107.55,355],[110.3,356],[112.1,401],[114.35,559],[116.35,441],[117.5,447],[117.9,475],[118.45,452],[123.75,84],[126.35,75],[127.15,57],[127.85,72],[131.45,67],[131.95,84],[133.85,41],[138.95,30],[147.35,30],[148.0,50],[151.85,62],[158.1,158],[159.35,234],[161.65,305],[162.85,405],[163.9,401],[164.9,481],[169.5,172],[171.5,177],[172.1,214],[173.0,195],[174.65,202],[175.2,245],[175.65,235],[177.6,279],[179.7,417],[180.55,434],[180.95,423],[181.35,452],[181.85,435],[182.4,453],[185.15,632],[185.75,611],[189.3,896],[191.4,1012],[192.55,935],[195.35,842],[196.7,935],[197.3,913],[197.9,999],[198.7,929],[199.45,937],[199.75,922],[200.45,928],[200.95,965],[201.6,958],[203.5,1033],[205.1,945],[205.85,959],[207.5,935],[211.65,1082],[213.15,1179],[214.55,1102],[215.7,1108],[217.7,971],[218.95,959],[219.65,925],[220.2,951],[221.25,824],[222.95,753],[226.8,378],[228.55,508],[231.15,416],[231.4,451],[235.65,452],[241.15,544],[242.2,591],[242.7,579],[244.45,626],[245.4,617],[247.95,766],[248.65,768],[252.8,1133],[255.1,1414],[257.8,1605],[259.6,1554],[260.3,1578],[261.45,1462],[262.35,1438],[264.15,1472],[266.3,1344],[267.05,1349],[268.15,1225],[269.45,1210],[271.25,1218],[275.0,1630],[277.0,1481],[278.3,1569],[279.4,1534],[279.85,1554],[281.15,1452],[281.85,1496],[282.45,1450],[283.15,1474],[283.95,1439],[285.95,1535],[286.85,1524],[287.6,1479],[289.55,1542],[291.9,1485],[292.9,1497],[293.4,1546],[294.05,1523],[294.6,1537],[295.4,1529],[297.15,1573],[300.5,1349],[304.3,1265],[305.1,1204],[306.4,1172],[308.05,1046],[309.2,1031],[310.15,1060],[312.1,1010],[312.6,1025],[313.45,973],[314.1,1025],[315.55,1020],[318.55,803],[321.75,1003],[323.2,1012],[323.9,989],[324.7,996],[326.3,1070],[327.35,1038],[329.15,1056],[329.5,1041],[330.95,1044],[334.3,1199],[335.7,1161],[337.7,1225],[339.9,1228],[345.05,1507],[347.0,1403],[348.25,1418],[351.9,1212],[353.95,1244],[360.6,1719],[361.1,1739],[362.25,1717],[363.55,1732],[364.5,1816],[365.5,1827],[366.3,1893],[368.45,1954],[368.95,1936],[369.9,1948],[373.8,2255],[375.3,2143],[376.55,2114],[378.6,2212],[380.7,2013],[382.35,1994],[383.1,2018],[384.3,1954],[386.3,2049],[388.2,1956],[389.65,1951],[390.9,1993],[392.4,1960],[393.55,1994],[394.6,1986],[395.75,2048],[396.8,2010],[398.3,2100],[399.8,2022],[401.2,1997],[403.6,2013],[405.5,2078],[406.2,2040],[407.25,2053],[408.3,2040],[410.8,2083],[412.4,2082],[413.2,2163],[413.45,2138],[414.35,2196],[415.2,2180],[416.1,2221],[418.4,2030],[421.3,1965],[423.35,2014],[424.5,1927],[425.65,1947],[427.05,1920],[430.35,1956],[433.6,1859],[434.5,1938],[435.75,1895],[437.3,1890],[438.35,1812],[439.55,1776],[440.2,1778],[441.95,1880],[442.9,1860],[444.35,1876],[445.55,1847],[447.35,1876],[448.15,1828],[449.3,1890],[452.35,1723],[453.2,1720],[454.1,1752],[455.8,1644],[457.1,1651],[457.7,1635],[459.35,1699],[460.25,1636],[460.8,1658],[461.2,1622],[464.9,1830],[466.5,1731],[468.05,1699],[469.2,1751],[470.25,1748],[471.9,1838],[472.85,1742],[473.65,1741],[474.95,1686],[475.8,1592],[477.95,1695],[478.5,1684],[478.95,1709],[479.3,1694],[480.2,1696],[481.8,1528],[483.35,1451],[486.55,1646],[489.1,1622],[489.65,1597],[491.45,1633],[492.8,1622],[493.5,1581],[495.45,1607],[497.45,1525],[497.95,1547],[498.35,1527],[498.8,1533],[499.4,1490],[500.25,1560],[500.85,1553],[504.8,1327],[507.8,1545],[510.3,1362],[513.4,982],[514.35,1045],[515.45,952],[516.7,1051],[517.95,987],[519.8,1115],[521.45,1139],[521.95,1118],[523.1,1119],[525.15,964],[528.45,1180],[536.9,454],[538.15,417],[540.45,412],[542.0,461],[544.9,719],[546.2,587],[548.4,832],[549.6,835],[550.85,890],[556.95,1394],[558.4,1428],[559.55,1539],[560.75,1565],[561.85,1628],[563.45,1590],[564.6,1635],[567.3,1643],[567.9,1684],[569.6,1671],[570.1,1685],[570.95,1632],[572.0,1674],[573.2,1687],[578.6,1673],[580.5,1704],[583.1,1585],[583.75,1623],[584.3,1608],[585.35,1645],[588.9,1629],[590.05,1655],[591.5,1658],[594.4,1580],[595.7,1578],[598.95,1378],[600.95,1309],[603.55,1505],[605.0,1522],[607.55,1506],[610.35,1611],[613.8,1693],[614.8,1687],[617.05,1714],[618.2,1714],[619.45,1654],[620.55,1682],[622.9,1572],[625.5,1596],[628.4,1550],[629.6,1509],[632.3,1322],[634.25,1377],[635.45,1335],[636.65,1362],[637.65,1359],[642.15,1456],[644.6,1484],[646.15,1542],[647.05,1507],[647.85,1516],[651.1,1650],[653.25,1675],[654.3,1617],[656.0,1674],[657.25,1662],[658.45,1724],[658.95,1709],[659.5,1718],[661.55,1637],[667.2,1557],[671.05,1772],[672.8,1797],[674.1,1731],[674.85,1748],[677.3,1640],[678.3,1624],[680.0,1651],[681.25,1593],[682.75,1636],[686.6,1896],[688.2,1918],[689.35,1882],[691.0,1932],[692.05,2011],[699.55,2233],[705.85,2287],[709.75,2352],[710.65,2342],[713.85,2524],[716.65,2770],[718.2,2846],[718.75,2803],[719.6,2823],[720.55,2782],[722.75,2876],[723.85,2847],[725.75,2842],[728.85,2863],[730.55,2903],[731.45,2804],[732.25,2763],[733.25,2758],[734.1,2779],[735.9,2908],[738.15,2673],[741.1,2694],[741.5,2713],[742.25,2684],[743.0,2704],[743.75,2670],[748.2,2751],[752.05,2787],[752.85,2829],[753.25,2800],[754.35,2803],[760.4,2690],[763.2,2666],[764.25,2699],[765.8,2624],[767.8,2358],[768.8,2306],[769.55,2312],[770.95,2239],[773.35,2476],[774.35,2440],[775.45,2329],[777.3,2333],[777.9,2308],[778.85,2386],[781.85,2094],[782.8,2104],[785.3,1870],[785.7,1864],[786.9,1949],[792.65,1552],[793.65,1538],[796.05,1658],[796.95,1669],[798.05,1642],[800.3,1762],[802.95,1565],[803.95,1550],[812.35,905],[813.7,871],[816.1,920],[819.4,1180],[821.45,1035],[822.25,1070],[823.55,1053],[824.85,1122],[825.65,1090],[827.6,1162],[828.7,1116],[831.1,878],[833.05,999],[834.7,1056],[836.6,1214],[837.9,1223],[839.15,1164],[841.35,1132],[842.2,1150],[843.1,1137],[844.1,1172],[845.8,1165],[848.8,1009],[850.5,979],[851.75,920],[853.9,991],[854.85,923],[855.25,934],[855.55,922],[858.3,589],[859.95,560],[860.65,597],[862.15,522],[863.65,565],[865.45,706],[866.8,692],[876.55,770],[881.0,769],[883.25,1018],[883.65,1010],[884.1,1033],[888.95,1425],[891.4,1685],[895.3,1360],[896.25,1349],[898.65,1475],[900.25,1627],[900.95,1618],[902.1,1736],[903.45,1684],[905.15,1497],[909.05,1230],[909.55,1230],[911.55,1034],[912.25,1040],[914.2,879],[916.1,821],[917.35,871],[918.7,999],[919.7,937],[920.5,949],[921.95,895],[922.95,930],[924.3,885],[924.85,919],[925.3,895],[925.7,915],[926.5,908],[927.2,848],[927.7,878],[928.75,869],[930.0,809],[931.85,836],[933.0,892],[935.1,770],[936.5,837],[937.2,829],[938.5,851],[939.95,916],[941.2,896],[942.1,929],[943.75,901],[945.35,776],[947.05,727],[949.25,706],[949.7,730],[950.55,687],[952.45,669],[953.4,724],[954.35,681],[956.6,861],[957.85,821],[960.35,639],[961.05,652],[961.55,639],[962.35,691],[963.65,650],[974.6,952],[977.75,1097],[979.45,1251],[983.4,980],[984.35,1010],[985.25,972],[987.5,1182],[988.25,1113],[988.9,1116],[990.4,1040],[990.9,1059],[991.8,1014],[992.55,1025],[996.6,792],[997.3,846],[998.55,778],[999.0,784],[1000.8,655],[1003.65,769],[1005.05,790],[1008.35,993],[1010.45,1059],[1011.4,1121],[1012.1,1087],[1012.75,1094],[1013.2,1077],[1016.9,1140],[1017.15,1128],[1017.95,1138],[1021.6,1218],[1029.65,1742],[1030.65,1756],[1032.55,1739],[1034.05,1827],[1034.5,1799],[1035.05,1847],[1035.85,1797],[1036.9,1870],[1037.4,1854],[1038.0,1878],[1039.2,1776],[1039.9,1820],[1041.9,1783],[1044.7,2051],[1045.25,2041],[1046.15,2062],[1046.8,2127],[1047.5,2063],[1048.85,2174],[1050.9,1813],[1051.55,1752],[1052.5,1742],[1053.8,1802],[1060.0,2290],[1062.95,2646],[1064.25,2768],[1067.25,2933],[1069.7,3225],[1071.2,3160],[1073.45,2833],[1074.45,2806],[1078.05,2249],[1078.8,2186],[1080.4,2150],[1083.65,1683],[1089.0,1575],[1089.65,1609],[1090.9,1546],[1092.3,1540],[1094.05,1459],[1095.05,1488],[1096.25,1437],[1096.7,1455],[1102.1,1379],[1102.65,1395],[1104.2,1388],[1105.4,1358],[1110.25,1329],[1111.4,1303],[1112.85,1312],[1114.85,1268],[1115.7,1278],[1116.2,1253],[1116.5,1263],[1120.05,1231],[1120.7,1254],[1121.45,1218],[1124.0,1193],[1125.05,1202],[1125.35,1227],[1125.7,1204],[1126.3,1235],[1127.35,1174],[1129.2,1165],[1129.8,1232],[1132.6,1233],[1134.55,1308],[1136.55,1222],[1139.35,1425],[1140.7,1324],[1141.8,1361],[1143.15,1477],[1145.25,1222],[1145.8,1179],[1147.0,1156],[1148.4,1009],[1150.8,911],[1152.7,885],[1152.9,895],[1154.7,877],[1161.9,1252],[1167.2,1842],[1171.5,2533],[1174.4,2799],[1176.15,2627],[1178.7,2165],[1183.55,1564],[1184.25,1646],[1186.15,1687],[1188.65,1896],[1189.6,1920],[1192.65,2202],[1193.65,2225],[1194.5,2307],[1196.15,2323],[1199.6,2673],[1200.95,2563],[1202.1,2336],[1202.8,2301],[1203.95,2381],[1206.35,2097],[1206.75,2076],[1207.75,2083],[1212.1,2621],[1213.2,2669],[1214.45,2818],[1216.95,2720],[1218.55,2699],[1220.05,2756],[1221.5,2707],[1226.75,2803],[1227.85,2800],[1228.45,2835],[1229.1,2826],[1232.35,2866],[1233.35,2924],[1234.3,2915],[1235.4,2991],[1235.8,2982],[1236.15,3003],[1236.65,2987],[1237.55,3003],[1237.95,2988],[1238.35,3003],[1242.8,2541],[1243.15,2525],[1244.15,2582],[1245.65,2589],[1249.2,2184],[1249.5,2171],[1250.0,2181],[1251.05,2144],[1253.6,1891],[1254.15,1866],[1254.6,1876],[1255.65,1820],[1256.15,1842],[1256.9,1833],[1260.15,1736],[1266.75,1251],[1267.6,1234],[1269.05,1288],[1270.8,1108],[1272.5,1245],[1273.65,1284],[1275.05,1201],[1276.2,1274],[1278.5,1298],[1281.15,1149],[1283.55,944],[1284.15,950],[1284.95,907],[1287.9,704],[1294.75,1287],[1298.2,1452],[1299.55,1559],[1301.35,1613],[1304.8,1912],[1306.05,1923],[1307.5,1818],[1308.8,1924],[1310.0,1957],[1314.8,2388],[1315.55,2345],[1316.3,2349],[1317.5,2320],[1317.95,2337],[1318.65,2298],[1319.55,2348],[1321.25,2301],[1324.0,2477],[1326.6,2349],[1327.6,2396],[1328.1,2393],[1330.1,2318],[1330.7,2326],[1335.5,2254],[1338.25,2256],[1340.95,2308],[1342.15,2277],[1346.0,2284],[1347.6,2256],[1348.95,2263],[1351.4,2197],[1352.4,2245],[1354.2,2142],[1354.9,2131],[1355.7,2152],[1358.95,2080],[1362.1,1855],[1363.05,1853],[1364.15,1773],[1364.85,1777],[1365.5,1734],[1366.05,1741],[1367.45,1718],[1369.8,1601],[1370.45,1599],[1371.6,1499],[1373.75,1676],[1375.25,1709],[1376.8,1648],[1378.0,1671],[1379.0,1593],[1381.15,1520],[1382.45,1614],[1383.15,1611],[1384.35,1662],[1384.9,1650],[1385.7,1673],[1387.4,1625],[1388.8,1545],[1389.5,1565],[1390.2,1555],[1391.7,1409],[1392.0,1420],[1392.5,1399],[1397.75,1087],[1398.95,1136],[1401.0,1072],[1401.9,1114],[1404.35,957],[1405.3,945],[1409.7,657],[1411.25,664],[1411.8,684],[1413.55,613],[1414.1,629],[1414.7,611],[1415.55,644],[1416.0,620],[1416.5,633],[1419.3,293],[1420.05,271],[1420.6,297],[1421.55,230],[1423.8,178],[1425.5,209],[1426.45,143],[1427.25,184],[1427.65,178],[1428.8,83],[1430.05,60],[1430.75,57],[1431.3,88],[1435.4,5],[1438.05,6]];
+const POI=[{"km":61.89,"n":"Village shop","k":"shop","e":586,"off":3},{"km":81.96,"n":"Shop & restaurants","k":"shop","e":783,"off":429},{"km":82.07,"n":"Supermarket","k":"shop","e":782,"off":221},{"km":84.3,"n":"Supermarket","k":"shop","e":781,"off":81},{"km":103.23,"n":"Very rough and rocky descent. Would be a shame to go over the bars here!","k":"haz","e":603,"off":0},{"km":161.16,"n":"Hike a Bike","k":"haz","e":294,"off":0},{"km":165.92,"n":"Rough and rocky descent","k":"haz","e":418,"off":0},{"km":195.9,"n":"Hike a bike","k":"haz","e":854,"off":0},{"km":231.27,"n":"CP1: Pansiyon Erdinc","k":"cp","e":429,"off":6},{"km":268.26,"n":"Main Road","k":"haz","e":1222,"off":0},{"km":271.17,"n":"Water + Bivy spot","k":"bed","e":1212,"off":0},{"km":279.52,"n":"Resupply in town, off route","k":"shop","e":1535,"off":1472},{"km":299.6,"n":"Water + bivy spot","k":"bed","e":1413,"off":0},{"km":309.87,"n":"Cafe","k":"food","e":1055,"off":0},{"km":309.94,"n":"Village shop","k":"shop","e":1056,"off":6},{"km":317.05,"n":"Village shop","k":"shop","e":904,"off":5},{"km":329.04,"n":"Major Resupply","k":"shop","e":1050,"off":0},{"km":329.5,"n":"Main Road","k":"haz","e":1041,"off":3},{"km":351.53,"n":"Several shops, restaurants, hotels, off route","k":"shop","e":1239,"off":2975},{"km":395.86,"n":"Beautiful plateau","k":"view","e":2047,"off":0},{"km":461.14,"n":"River crossing","k":"haz","e":1624,"off":0},{"km":479.79,"n":"The Shangri-La","k":"bed","e":1692,"off":0},{"km":484.19,"n":"Major resupply, shops & restaurant","k":"shop","e":1500,"off":209},{"km":520.83,"n":"Village shop","k":"shop","e":1123,"off":1},{"km":536.71,"n":"Potential detour","k":"haz","e":473,"off":3},{"km":581.08,"n":"Real risk of peanut butter mud if wet at various points throughout this section to CP2","k":"haz","e":1666,"off":0},{"km":631.7,"n":"CP2 : Taskale","k":"cp","e":1376,"off":1},{"km":633.55,"n":"Village shop","k":"shop","e":1358,"off":0},{"km":639.38,"n":"Cool canyon","k":"view","e":1405,"off":0},{"km":741.32,"n":"High wild remote rocky plateau. Beautiful","k":"view","e":2702,"off":0},{"km":767.96,"n":"Incredible views","k":"view","e":2349,"off":0},{"km":774.04,"n":"The Hilton","k":"bed","e":2448,"off":15},{"km":782.73,"n":"The Four Seasons","k":"bed","e":2108,"off":13},{"km":817.98,"n":"Village shop","k":"shop","e":1063,"off":3},{"km":824.52,"n":"Supermarket","k":"shop","e":1096,"off":48},{"km":825.14,"n":"Several shops","k":"shop","e":1119,"off":2},{"km":844.25,"n":"Very small shop","k":"shop","e":1172,"off":1},{"km":858.0,"n":"Incredible road built into canyon cliffs","k":"view","e":638,"off":0},{"km":878.7,"n":"Major resuppy, hotels, restaurants","k":"shop","e":768,"off":0},{"km":956.42,"n":"Major resupply, several shops","k":"shop","e":854,"off":0},{"km":1047.38,"n":"The end of the loop will be beautiful but tough. The weather may well get bad throughout this section. Expect views and harsh conditions. High alpine mountains.","k":"haz","e":2068,"off":0},{"km":1086.84,"n":"Restaurant","k":"food","e":1619,"off":190},{"km":1090.22,"n":"Village shop","k":"shop","e":1575,"off":3},{"km":1095.07,"n":"Village shop","k":"shop","e":1488,"off":0},{"km":1095.44,"n":"CP3 : Taurus Guesthouse","k":"cp","e":1476,"off":2},{"km":1105.65,"n":"Main road, high speed traffic. Be careful","k":"haz","e":1360,"off":1},{"km":1114.5,"n":"Small shop","k":"shop","e":1282,"off":5},{"km":1114.82,"n":"Restaurant off route","k":"food","e":1269,"off":230},{"km":1115.35,"n":"Village shop","k":"shop","e":1282,"off":3},{"km":1116.07,"n":"Restaurant off route","k":"food","e":1259,"off":424},{"km":1116.5,"n":"Bigger shop","k":"shop","e":1262,"off":187},{"km":1125.66,"n":"Shops & a cafe","k":"shop","e":1203,"off":2},{"km":1154.3,"n":"Restaurant","k":"food","e":885,"off":281},{"km":1154.3,"n":"Petrol station with shop","k":"shop","e":885,"off":225},{"km":1173.76,"n":"Abandoned mine buildings","k":"bed","e":2773,"off":123},{"km":1175.72,"n":"Old mining road","k":"haz","e":2662,"off":1},{"km":1197.54,"n":"Lake Loop","k":"haz","e":2469,"off":0},{"km":1205.65,"n":"Hike a bike traverse","k":"haz","e":2194,"off":0},{"km":1219.49,"n":"Pera Palace","k":"bed","e":2743,"off":28},{"km":1244.64,"n":"Beautiful climb","k":"view","e":2580,"off":0},{"km":1270.34,"n":"Shops, restaurants, hotels, ATM","k":"shop","e":1151,"off":10},{"km":1301.07,"n":"Couch","k":"bed","e":1605,"off":0},{"km":1308.04,"n":"The White Lotus","k":"bed","e":1861,"off":365},{"km":1379.5,"n":"Several shops","k":"shop","e":1579,"off":0},{"km":1387.39,"n":"The final stretch may well seem like it goes on forever. Gradual downhill but plenty of small ups too and mostly gravel.","k":"haz","e":1627,"off":0},{"km":1438.07,"n":"Erdemli Municipal Campsite","k":"finish","e":6,"off":2}];
+const HAZ=[{"a":102.9,"b":106.2,"t":"rough","n":"Very rough and rocky descent. Would be a shame to go over the bars here!"},{"a":160.7,"b":163.2,"t":"hab","n":"Hike a Bike"},{"a":165.6,"b":168.9,"t":"rough","n":"Rough and rocky descent"},{"a":195.4,"b":197.9,"t":"hab","n":"Hike a bike"},{"a":267.8,"b":271.3,"t":"road","n":"Main Road"},{"a":329.0,"b":332.5,"t":"road","n":"Main Road"},{"a":460.9,"b":461.5,"t":"ford","n":"River crossing"},{"a":536.2,"b":537.7,"t":"detour","n":"Potential detour"},{"a":581.1,"b":631.7,"t":"mud","n":"Real risk of peanut butter mud if wet at various points throughout this section to CP2"},{"a":1047.4,"b":1095.4,"t":"alpine","n":"The end of the loop will be beautiful but tough. The weather may well get bad throughout this section. Expect views and harsh conditions. High alpine mountains."},{"a":1105.2,"b":1108.7,"t":"road","n":"Main road, high speed traffic. Be careful"},{"a":1175.2,"b":1179.7,"t":"rough","n":"Old mining road"},{"a":1197.0,"b":1201.5,"t":"rough","n":"Lake Loop"},{"a":1205.2,"b":1207.7,"t":"hab","n":"Hike a bike traverse"},{"a":1387.4,"b":1438.1,"t":"gravel","n":"The final stretch may well seem like it goes on forever. Gradual downhill but plenty of small ups too and mostly gravel."}];
+const GAPS=[{"a":0.0,"b":61.9,"km":61.9,"climb":1669,"high":1119},{"a":84.3,"b":231.3,"km":147.0,"climb":2815,"high":1179},{"a":351.5,"b":484.2,"km":132.7,"climb":3075,"high":2255},{"a":520.8,"b":631.7,"km":110.9,"climb":2592,"high":1716},{"a":633.5,"b":818.0,"km":184.4,"climb":3729,"high":2908},{"a":878.7,"b":956.4,"km":77.7,"climb":2250,"high":1736},{"a":956.4,"b":1086.8,"km":130.4,"climb":4479,"high":3225},{"a":1154.3,"b":1270.3,"km":116.0,"climb":4544,"high":3003},{"a":1270.3,"b":1379.5,"km":109.2,"climb":2872,"high":2477},{"a":1379.5,"b":1438.1,"km":58.6,"climb":613,"high":1677}];
+const CLIMBS=[{"a":0.1,"b":24.6,"len":24.5,"gain":1090,"top":1096,"avg":4.5},{"a":143.4,"b":164.9,"len":21.5,"gain":455,"top":481,"avg":2.1},{"a":169.6,"b":191.4,"len":21.8,"gain":841,"top":1012,"avg":3.8},{"a":231.2,"b":257.8,"len":26.7,"gain":1189,"top":1605,"avg":4.5},{"a":270.6,"b":275.1,"len":4.4,"gain":421,"top":1630,"avg":9.5},{"a":318.4,"b":345.1,"len":26.7,"gain":705,"top":1507,"avg":2.6},{"a":352.0,"b":373.8,"len":21.8,"gain":1044,"top":2255,"avg":4.8},{"a":546.1,"b":570.0,"len":23.9,"gain":1100,"top":1686,"avg":4.6},{"a":601.0,"b":618.0,"len":17.0,"gain":406,"top":1716,"avg":2.4},{"a":681.2,"b":718.2,"len":37.0,"gain":1253,"top":2846,"avg":3.4},{"a":862.1,"b":891.5,"len":29.4,"gain":1165,"top":1687,"avg":4.0},{"a":963.6,"b":979.4,"len":15.8,"gain":602,"top":1251,"avg":3.8},{"a":1000.8,"b":1011.5,"len":10.7,"gain":467,"top":1122,"avg":4.4},{"a":1013.1,"b":1035.0,"len":21.9,"gain":770,"top":1847,"avg":3.5},{"a":1052.4,"b":1069.7,"len":17.2,"gain":1485,"top":3225,"avg":8.6},{"a":1154.6,"b":1174.4,"len":19.8,"gain":1923,"top":2799,"avg":9.7},{"a":1183.5,"b":1199.6,"len":16.0,"gain":1109,"top":2673,"avg":6.9},{"a":1206.8,"b":1214.5,"len":7.7,"gain":742,"top":2818,"avg":9.7},{"a":1288.1,"b":1305.8,"len":17.8,"gain":1224,"top":1926,"avg":6.9},{"a":1307.4,"b":1314.8,"len":7.4,"gain":574,"top":2388,"avg":7.7}];
+const CELLS=[[0.0,33,0,0,6],[5.0,57,0,0,36],[10.0,328,19,0,91],[15.0,349,33,0,419],[20.0,328,37,0,768],[25.0,68,18,0,1069],[30.0,155,14,0,970],[35.0,0,46,0,1056],[40.0,4,10,0,672],[45.0,198,5,0,492],[50.0,60,7,0,676],[55.0,88,9,0,610],[60.0,55,0,0,595],[65.0,183,7,0,624],[70.0,80,21,0,800],[75.0,157,14,0,746],[80.0,12,4,0,849],[85.0,5,0,0,778],[90.0,128,13,0,773],[95.0,64,13,0,832],[100.0,11,22,0,728],[105.0,9,0,0,459],[110.0,209,14,0,354],[115.0,48,26,0,511],[120.0,4,33,0,357],[125.0,31,0,0,82],[130.0,23,0,0,65],[135.0,1,0,0,38],[140.0,6,0,0,30],[145.0,36,0,0,27],[150.0,70,0,0,52],[155.0,141,10,0,119],[160.0,246,23,1,248],[165.0,11,36,1,479],[170.0,108,8,0,179],[175.0,203,16,0,232],[180.0,231,18,0,419],[185.0,337,36,0,620],[190.0,80,10,0,932],[195.0,220,27,1,840],[200.0,127,17,0,933],[205.0,97,0,0,949],[210.0,179,14,0,1012],[215.0,35,11,0,1113],[220.0,8,62,0,943],[225.0,132,49,0,543],[230.0,64,5,0,454],[235.0,83,0,0,452],[240.0,113,0,0,528],[245.0,276,18,0,622],[250.0,520,85,0,884],[255.0,218,24,0,1404],[260.0,52,28,0,1565],[265.0,17,23,0,1401],[270.0,422,55,0,1209],[275.0,113,34,0,1630],[280.0,109,26,0,1545],[285.0,126,8,0,1480],[290.0,89,7,0,1531],[295.0,48,16,0,1530],[300.0,5,15,0,1390],[305.0,35,17,0,1209],[310.0,75,9,0,1059],[315.0,99,35,0,1023],[320.0,135,0,0,900],[325.0,82,0,0,1007],[330.0,162,0,1,1038],[335.0,81,0,0,1172],[340.0,286,17,0,1232],[345.0,21,8,0,1506],[350.0,82,4,0,1338],[355.0,380,45,0,1292],[360.0,190,22,0,1672],[365.0,155,11,0,1826],[370.0,301,49,0,1953],[375.0,99,34,0,2167],[380.0,63,24,0,2080],[385.0,94,12,0,1978],[390.0,83,0,0,1970],[395.0,132,16,0,2006],[400.0,91,1,0,2017],[405.0,70,3,0,2072],[410.0,164,21,0,2072],[415.0,41,28,0,2184],[420.0,72,15,0,1986],[425.0,34,0,0,1942],[430.0,94,9,0,1943],[435.0,10,10,0,1912],[440.0,128,12,0,1777],[445.0,93,7,0,1863],[450.0,34,0,0,1860],[455.0,81,7,0,1693],[460.0,234,31,0,1658],[465.0,63,10,0,1829],[470.0,97,26,0,1748],[475.0,137,24,0,1682],[480.0,117,45,0,1695],[485.0,89,0,0,1566],[490.0,83,2,0,1597],[495.0,83,18,0,1604],[500.0,38,19,0,1539],[505.0,204,48,0,1342],[510.0,65,80,0,1375],[515.0,229,37,0,984],[520.0,34,17,0,1117],[525.0,223,50,0,970],[530.0,0,59,0,1054],[535.0,18,35,1,628],[540.0,313,40,0,422],[545.0,292,54,0,718],[550.0,380,56,0,860],[555.0,329,40,0,1236],[560.0,140,11,0,1550],[565.0,95,4,0,1632],[570.0,60,2,0,1686],[575.0,36,0,0,1683],[580.0,84,12,1,1688],[585.0,43,0,1,1637],[590.0,24,0,1,1654],[595.0,9,6,1,1572],[600.0,214,34,1,1336],[605.0,110,0,1,1522],[610.0,104,0,1,1598],[615.0,58,1,1,1691],[620.0,30,0,1,1679],[625.0,4,5,1,1592],[630.0,62,20,0,1478],[635.0,85,0,0,1349],[640.0,96,0,0,1410],[645.0,130,0,0,1504],[650.0,110,7,0,1594],[655.0,104,0,0,1644],[660.0,11,0,0,1692],[665.0,168,15,0,1588],[670.0,96,5,0,1723],[675.0,30,2,0,1740],[680.0,215,15,0,1651],[685.0,134,0,0,1808],[690.0,198,10,0,1905],[695.0,134,0,0,2103],[700.0,57,0,0,2237],[705.0,73,0,0,2288],[710.0,276,10,0,2350],[715.0,255,42,0,2613],[720.0,98,8,0,2802],[725.0,40,0,0,2841],[730.0,121,23,0,2878],[735.0,86,41,0,2844],[740.0,69,5,0,2689],[745.0,81,0,0,2691],[750.0,72,5,0,2772],[755.0,14,0,0,2781],[760.0,42,2,0,2705],[765.0,10,47,0,2683],[770.0,242,52,0,2288],[775.0,92,37,0,2377],[780.0,21,60,0,2285],[785.0,89,24,0,1896],[790.0,74,6,0,1731],[795.0,171,2,0,1610],[800.0,17,34,0,1751],[805.0,0,50,0,1469],[810.0,43,11,0,1070],[815.0,278,44,0,906],[820.0,116,22,0,1138],[825.0,78,30,0,1122],[830.0,203,40,0,989],[835.0,158,21,0,1080],[840.0,63,0,0,1150],[845.0,10,2,0,1165],[850.0,76,6,0,985],[855.0,13,47,0,925],[860.0,207,25,0,562],[865.0,48,0,0,689],[870.0,42,0,0,712],[875.0,20,0,0,753],[880.0,367,55,0,766],[885.0,436,68,0,1118],[890.0,140,71,0,1546],[895.0,258,28,0,1385],[900.0,149,51,0,1600],[905.0,10,46,0,1513],[910.0,17,43,0,1178],[915.0,183,29,0,853],[920.0,93,10,0,933],[925.0,52,24,0,915],[930.0,90,10,0,809],[935.0,157,5,0,775],[940.0,38,17,0,917],[945.0,29,4,0,800],[950.0,113,17,0,714],[955.0,125,33,0,736],[960.0,102,5,0,657],[965.0,152,0,0,682],[970.0,137,0,0,833],[975.0,281,30,0,970],[980.0,31,29,0,1216],[985.0,222,47,0,976],[990.0,33,8,0,1056],[995.0,61,27,0,886],[1000.0,145,9,0,709],[1005.0,261,15,0,788],[1010.0,118,7,0,1050],[1015.0,86,0,0,1111],[1020.0,276,18,0,1186],[1025.0,281,11,0,1462],[1030.0,165,15,0,1740],[1035.0,144,31,0,1846],[1040.0,280,37,0,1816],[1045.0,197,56,1,2044],[1050.0,162,44,1,1971],[1055.0,390,62,1,1900],[1060.0,506,79,1,2290],[1065.0,431,52,1,2796],[1070.0,10,64,1,3224],[1075.0,2,64,1,2710],[1080.0,0,62,1,2167],[1085.0,36,5,1,1656],[1090.0,37,4,1,1587],[1095.0,18,2,0,1488],[1100.0,21,0,0,1401],[1105.0,4,0,1,1365],[1110.0,17,0,0,1330],[1115.0,24,0,0,1271],[1120.0,38,0,0,1231],[1125.0,131,17,0,1201],[1130.0,84,8,0,1234],[1135.0,206,26,0,1276],[1140.0,157,59,0,1375],[1145.0,7,33,0,1254],[1150.0,48,6,0,945],[1155.0,240,8,0,904],[1160.0,444,65,0,1134],[1165.0,695,100,0,1579],[1170.0,525,71,0,2274],[1175.0,1,88,1,2731],[1180.0,92,74,0,1997],[1185.0,335,37,0,1651],[1190.0,327,38,0,1983],[1195.0,368,67,1,2310],[1200.0,85,52,0,2609],[1205.0,275,61,1,2246],[1210.0,474,68,0,2344],[1215.0,64,4,0,2787],[1220.0,70,4,0,2755],[1225.0,97,4,0,2762],[1230.0,129,3,0,2837],[1235.0,99,39,0,2946],[1240.0,64,43,0,2802],[1245.0,21,65,0,2584],[1250.0,12,49,0,2181],[1255.0,34,0,0,1854],[1260.0,1,48,0,1737],[1265.0,62,38,0,1371],[1270.0,176,44,0,1182],[1275.0,108,4,0,1201],[1280.0,10,23,0,1214],[1285.0,170,50,0,903],[1290.0,426,63,0,872],[1295.0,267,19,0,1298],[1300.0,354,45,0,1561],[1305.0,158,30,0,1912],[1310.0,432,75,0,1957],[1315.0,71,3,0,2382],[1320.0,181,24,0,2329],[1325.0,57,14,0,2439],[1330.0,14,0,0,2323],[1335.0,50,0,0,2259],[1340.0,27,0,0,2297],[1345.0,16,0,0,2283],[1350.0,52,11,0,2238],[1355.0,22,10,0,2134],[1360.0,24,26,0,1996],[1365.0,10,10,0,1768],[1370.0,209,47,0,1600],[1375.0,39,11,0,1702],[1380.0,157,13,0,1549],[1385.0,44,2,1,1654],[1390.0,13,36,1,1557],[1395.0,69,22,1,1235],[1400.0,48,16,1,1097],[1405.0,14,33,1,947],[1410.0,71,6,1,667],[1415.0,31,53,1,631],[1420.0,44,6,1,272],[1425.0,65,19,1,187],[1430.0,51,5,1,61],[1435.0,6,0,1,12]];
+const GEO=[[0,36.847,30.6179,6],[40,36.9299,30.4225,672],[80,37.1958,30.4646,849],[120,37.1887,30.7344,357],[160,37.1966,30.9087,248],[200,37.2152,31.123,933],[240,37.3251,31.2571,528],[280,37.376,31.5075,1545],[320,37.1876,31.6962,900],[360,37.055,31.8816,1672],[400,36.9489,32.1253,2017],[440,36.9016,32.4329,1777],[480,36.8763,32.7038,1695],[520,36.926,32.9094,1117],[560,36.9403,33.1629,1550],[600,37.0144,33.4645,1336],[640,37.1448,33.6637,1410],[680,37.1722,33.8867,1651],[720,37.2012,34.207,2802],[760,37.3548,34.4775,2705],[800,37.2713,34.6753,1751],[840,37.2403,34.8405,1150],[880,37.4337,34.8769,766],[920,37.4789,35.1095,933],[960,37.5718,35.3894,657],[1000,37.7658,35.4013,709],[1040,37.9363,35.4262,1816],[1080,37.9081,35.1528,2167],[1120,37.6641,34.9912,1231],[1160,37.4739,34.7814,1134],[1200,37.4058,34.5579,2609],[1240,37.2844,34.4921,2802],[1280,37.1403,34.5265,1214],[1320,37.1553,34.3459,2329],[1360,36.9849,34.1792,1996],[1400,36.7732,34.1678,1097],[1438.1,36.5911,34.2864,6]];
+const GRADHIST=[{"lo":-20,"hi":-12,"km":41.0,"pct":2.8},{"lo":-12,"hi":-8,"km":112.1,"pct":7.8},{"lo":-8,"hi":-5,"km":151.3,"pct":10.5},{"lo":-5,"hi":-2,"km":193.6,"pct":13.5},{"lo":-2,"hi":2,"km":418.6,"pct":29.1},{"lo":2,"hi":5,"km":214.9,"pct":14.9},{"lo":5,"hi":8,"km":151.8,"pct":10.6},{"lo":8,"hi":12,"km":122.9,"pct":8.5},{"lo":12,"hi":16,"km":26.3,"pct":1.8},{"lo":16,"hi":20,"km":5.7,"pct":0.4}];
+const SURF={"Road":608.0,"Path":535.0,"Unknown":204.0,"Singletrack":51.4,"Street":32.3,"State road":12.0};
+
+const RESUP=[{"km":61.89,"n":"Village shop","cat":"OPTIONAL","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":586,"off":3,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":20.1,"gap_climb":471,"gap_high":869,"next":"Shop & restaurants","next_km":81.96,"prev":"START","prev_km":0.0,"back_km":61.9,"cont":"SHUT: Shop & restaurants is 20 km on. No action needed if you are above 130% cover."},{"km":81.96,"n":"Shop & restaurants","cat":"OPTIONAL","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":783,"off":429,"detour":0.9,"detour_opt":null,"cls":"onroute","gap":0.1,"gap_climb":0,"gap_high":783,"next":"Supermarket","next_km":82.07,"prev":"Village shop","prev_km":61.89,"back_km":20.1,"cont":"SHUT: Supermarket is 0 km on. No action needed if you are above 130% cover."},{"km":82.07,"n":"Supermarket","cat":"OPTIONAL","hk":"major","open":[8,22],"conf":[8.5,21],"hlabel":"major resupply / supermarket","ele":782,"off":221,"detour":0.4,"detour_opt":null,"cls":"onroute","gap":2.2,"gap_climb":11,"gap_high":789,"next":"Supermarket","next_km":84.3,"prev":"Shop & restaurants","prev_km":81.96,"back_km":0.1,"cont":"SHUT: Supermarket is 2 km on. No action needed if you are above 130% cover."},{"km":84.3,"n":"Supermarket","cat":"COMPULSORY","hk":"major","open":[8,22],"conf":[8.5,21],"hlabel":"major resupply / supermarket","ele":781,"off":81,"detour":0.2,"detour_opt":null,"cls":"onroute","gap":147.0,"gap_climb":2815,"gap_high":1179,"next":"CP1: Pansiyon Erdinc","next_km":231.27,"prev":"Supermarket","prev_km":82.07,"back_km":2.2,"cont":"SHUT: wait for 08:00 — do not start 147 km and +2815 m without food. Backtrack: Supermarket, 2 km behind. Riding on means reaching CP1: Pansiyon Erdinc in deficit."},{"km":231.27,"n":"CP1: Pansiyon Erdinc","cat":"IMPORTANT","hk":"cp","open":[0,24],"conf":[0,24],"hlabel":"open 24 h (manual)","ele":429,"off":6,"detour":0.0,"detour_opt":{"n":"Resupply in town, off route","km":279.52,"round_km":2.9,"first":48.2,"then":30.4},"cls":"onroute","gap":78.6,"gap_climb":2273,"gap_high":1630,"next":"Cafe","next_km":309.87,"prev":"Supermarket","prev_km":84.3,"back_km":147.0,"cont":"Open 24 h. If it has no food, the next selling point is Cafe at km 310 (79 km on)."},{"km":309.87,"n":"Cafe","cat":"OPTIONAL","hk":"cafe","open":[8,20],"conf":[9,18],"hlabel":"cafe","ele":1055,"off":0,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":0.1,"gap_climb":1,"gap_high":1056,"next":"Village shop","next_km":309.94,"prev":"CP1: Pansiyon Erdinc","prev_km":231.27,"back_km":78.6,"cont":"SHUT: Village shop is 0 km on. No action needed if you are above 130% cover."},{"km":309.94,"n":"Village shop","cat":"OPTIONAL","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":1056,"off":6,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":7.1,"gap_climb":79,"gap_high":1060,"next":"Village shop","next_km":317.05,"prev":"Cafe","prev_km":309.87,"back_km":0.1,"cont":"SHUT: Village shop is 7 km on. No action needed if you are above 130% cover."},{"km":317.05,"n":"Village shop","cat":"OPTIONAL","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":904,"off":5,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":12.0,"gap_climb":309,"gap_high":1070,"next":"Major Resupply","next_km":329.04,"prev":"Village shop","prev_km":309.94,"back_km":7.1,"cont":"SHUT: Major Resupply is 12 km on. No action needed if you are above 130% cover."},{"km":329.04,"n":"Major Resupply","cat":"COMPULSORY","hk":"major","open":[8,22],"conf":[8.5,21],"hlabel":"major resupply / supermarket","ele":1050,"off":0,"detour":0.0,"detour_opt":{"n":"Several shops, restaurants, hotels, off route","km":351.53,"round_km":6.0,"first":22.5,"then":132.7},"cls":"onroute","gap":155.1,"gap_climb":3629,"gap_high":2255,"next":"Major resupply, shops & restaurant","next_km":484.19,"prev":"Village shop","prev_km":317.05,"back_km":12.0,"cont":"SHUT: wait for 08:00. There is one escape — Several shops, restaurants, hotels, off route, 22 km on and a 6.0 km round trip off route, which breaks the 155 km gap into 22 + 133. Backtrack: Village shop, 12 km behind."},{"km":484.19,"n":"Major resupply, shops & restaurant","cat":"OPTIONAL","hk":"major","open":[8,22],"conf":[8.5,21],"hlabel":"major resupply / supermarket","ele":1500,"off":209,"detour":0.4,"detour_opt":null,"cls":"onroute","gap":36.6,"gap_climb":866,"gap_high":1648,"next":"Village shop","next_km":520.83,"prev":"Major Resupply","prev_km":329.04,"back_km":155.1,"cont":"SHUT: Village shop is 37 km on. No action needed if you are above 130% cover."},{"km":520.83,"n":"Village shop","cat":"COMPULSORY","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":1123,"off":1,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":110.9,"gap_climb":2593,"gap_high":1716,"next":"CP2 : Taskale","next_km":631.7,"prev":"Major resupply, shops & restaurant","prev_km":484.19,"back_km":36.6,"cont":"SHUT: wait for 07:00 — do not start 111 km and +2593 m without food. Backtracking is not an option — the last stop is 37 km behind you. Riding on means reaching CP2 : Taskale in deficit."},{"km":631.7,"n":"CP2 : Taskale","cat":"IMPORTANT","hk":"cp","open":[0,24],"conf":[0,24],"hlabel":"open 24 h (manual)","ele":1376,"off":1,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":1.8,"gap_climb":42,"gap_high":1378,"next":"Village shop","next_km":633.55,"prev":"Village shop","prev_km":520.83,"back_km":110.9,"cont":"Open 24 h. If it has no food, the next selling point is Village shop at km 634 (2 km on)."},{"km":633.55,"n":"Village shop","cat":"COMPULSORY","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":1358,"off":0,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":184.4,"gap_climb":3729,"gap_high":2908,"next":"Village shop","next_km":817.98,"prev":"CP2 : Taskale","prev_km":631.7,"back_km":1.8,"cont":"SHUT (village shop, 07:00-20:00) and this is the start of the 184 km gap with +3,729 m up to 2,908 m. CP2 is 1.8 km behind and open 24 h, but the manual does NOT promise food there - \"the exact location and/or nature of the checkpoint is likely to change\". If both fail, the last certain food is km 520.8, 113 km behind. Do not enter this gap short. Waiting until 07:00 costs hours; entering unfed can cost the race.","critical":1},{"km":817.98,"n":"Village shop","cat":"OPTIONAL","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":1063,"off":3,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":6.5,"gap_climb":207,"gap_high":1180,"next":"Supermarket","next_km":824.52,"prev":"Village shop","prev_km":633.55,"back_km":184.4,"cont":"SHUT: Supermarket is 6 km on. No action needed if you are above 130% cover."},{"km":824.52,"n":"Supermarket","cat":"OPTIONAL","hk":"major","open":[8,22],"conf":[8.5,21],"hlabel":"major resupply / supermarket","ele":1096,"off":48,"detour":0.1,"detour_opt":null,"cls":"onroute","gap":0.6,"gap_climb":26,"gap_high":1122,"next":"Several shops","next_km":825.14,"prev":"Village shop","prev_km":817.98,"back_km":6.5,"cont":"SHUT: Several shops is 1 km on. No action needed if you are above 130% cover."},{"km":825.14,"n":"Several shops","cat":"OPTIONAL","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":1119,"off":2,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":19.1,"gap_climb":497,"gap_high":1227,"next":"Very small shop","next_km":844.25,"prev":"Supermarket","prev_km":824.52,"back_km":0.6,"cont":"SHUT: Very small shop is 19 km on. No action needed if you are above 130% cover."},{"km":844.25,"n":"Very small shop","cat":"OPTIONAL","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":1172,"off":1,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":34.5,"gap_climb":420,"gap_high":1172,"next":"Major resuppy, hotels, restaurants","next_km":878.7,"prev":"Several shops","prev_km":825.14,"back_km":19.1,"cont":"SHUT: Major resuppy, hotels, restaurants is 34 km on. No action needed if you are above 130% cover."},{"km":878.7,"n":"Major resuppy, hotels, restaurants","cat":"IMPORTANT","hk":"major","open":[8,22],"conf":[8.5,21],"hlabel":"major resupply / supermarket","ele":768,"off":0,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":77.7,"gap_climb":2249,"gap_high":1736,"next":"Major resupply, several shops","next_km":956.42,"prev":"Very small shop","prev_km":844.25,"back_km":34.5,"cont":"SHUT: 78 km to Major resupply, several shops. Carryable if you are already near full; otherwise wait for 08:00. Backtracking is not an option — the last stop is 34 km behind you."},{"km":956.42,"n":"Major resupply, several shops","cat":"COMPULSORY","hk":"major","open":[8,22],"conf":[8.5,21],"hlabel":"major resupply / supermarket","ele":854,"off":0,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":130.4,"gap_climb":4479,"gap_high":3225,"next":"Restaurant","next_km":1086.84,"prev":"Major resuppy, hotels, restaurants","prev_km":878.7,"back_km":77.7,"cont":"SHUT: wait for 08:00 — do not start 130 km and +4479 m without food. Backtracking is not an option — the last stop is 78 km behind you. Riding on means reaching Restaurant in deficit."},{"km":1086.84,"n":"Restaurant","cat":"OPTIONAL","hk":"rest","open":[11,22],"conf":[12,21],"hlabel":"restaurant","ele":1619,"off":190,"detour":0.4,"detour_opt":null,"cls":"onroute","gap":3.4,"gap_climb":36,"gap_high":1619,"next":"Village shop","next_km":1090.22,"prev":"Major resupply, several shops","prev_km":956.42,"back_km":130.4,"cont":"SHUT: Village shop is 3 km on. No action needed if you are above 130% cover."},{"km":1090.22,"n":"Village shop","cat":"OPTIONAL","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":1575,"off":3,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":4.8,"gap_climb":37,"gap_high":1575,"next":"Village shop","next_km":1095.07,"prev":"Restaurant","prev_km":1086.84,"back_km":3.4,"cont":"SHUT: Village shop is 5 km on. No action needed if you are above 130% cover."},{"km":1095.07,"n":"Village shop","cat":"OPTIONAL","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":1488,"off":0,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":0.4,"gap_climb":0,"gap_high":1488,"next":"CP3 : Taurus Guesthouse","next_km":1095.44,"prev":"Village shop","prev_km":1090.22,"back_km":4.8,"cont":"SHUT: CP3 : Taurus Guesthouse is 0 km on. No action needed if you are above 130% cover."},{"km":1095.44,"n":"CP3 : Taurus Guesthouse","cat":"IMPORTANT","hk":"cp","open":[0,24],"conf":[0,24],"hlabel":"open 24 h (manual)","ele":1476,"off":2,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":19.1,"gap_climb":57,"gap_high":1476,"next":"Small shop","next_km":1114.5,"prev":"Village shop","prev_km":1095.07,"back_km":0.4,"cont":"Open 24 h. If it has no food, the next selling point is Small shop at km 1114 (19 km on)."},{"km":1114.5,"n":"Small shop","cat":"OPTIONAL","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":1282,"off":5,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":0.3,"gap_climb":0,"gap_high":1282,"next":"Restaurant off route","next_km":1114.82,"prev":"CP3 : Taurus Guesthouse","prev_km":1095.44,"back_km":19.1,"cont":"SHUT: Restaurant off route is 0 km on. No action needed if you are above 130% cover."},{"km":1114.82,"n":"Restaurant off route","cat":"OPTIONAL","hk":"rest","open":[11,22],"conf":[12,21],"hlabel":"restaurant","ele":1269,"off":230,"detour":0.5,"detour_opt":null,"cls":"onroute","gap":0.5,"gap_climb":15,"gap_high":1282,"next":"Village shop","next_km":1115.35,"prev":"Small shop","prev_km":1114.5,"back_km":0.3,"cont":"SHUT: Village shop is 0 km on. No action needed if you are above 130% cover."},{"km":1115.35,"n":"Village shop","cat":"OPTIONAL","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":1282,"off":3,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":0.7,"gap_climb":0,"gap_high":1282,"next":"Restaurant off route","next_km":1116.07,"prev":"Restaurant off route","prev_km":1114.82,"back_km":0.5,"cont":"SHUT: Restaurant off route is 1 km on. No action needed if you are above 130% cover."},{"km":1116.07,"n":"Restaurant off route","cat":"OPTIONAL","hk":"rest","open":[11,22],"conf":[12,21],"hlabel":"restaurant","ele":1259,"off":424,"detour":0.8,"detour_opt":null,"cls":"onroute","gap":0.4,"gap_climb":10,"gap_high":1263,"next":"Bigger shop","next_km":1116.5,"prev":"Village shop","prev_km":1115.35,"back_km":0.7,"cont":"SHUT: Bigger shop is 0 km on. No action needed if you are above 130% cover."},{"km":1116.5,"n":"Bigger shop","cat":"OPTIONAL","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":1262,"off":187,"detour":0.4,"detour_opt":null,"cls":"onroute","gap":9.2,"gap_climb":67,"gap_high":1263,"next":"Shops & a cafe","next_km":1125.66,"prev":"Restaurant off route","prev_km":1116.07,"back_km":0.4,"cont":"SHUT: Shops & a cafe is 9 km on. No action needed if you are above 130% cover."},{"km":1125.66,"n":"Shops & a cafe","cat":"OPTIONAL","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":1203,"off":2,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":28.6,"gap_climb":580,"gap_high":1477,"next":"Restaurant","next_km":1154.3,"prev":"Bigger shop","prev_km":1116.5,"back_km":9.2,"cont":"SHUT: Restaurant is 29 km on. No action needed if you are above 130% cover."},{"km":1154.3,"n":"Restaurant","cat":"OPTIONAL","hk":"rest","open":[11,22],"conf":[12,21],"hlabel":"restaurant","ele":885,"off":281,"detour":0.6,"detour_opt":null,"cls":"onroute","gap":0.0,"gap_climb":0,"gap_high":885,"next":"Petrol station with shop","next_km":1154.3,"prev":"Shops & a cafe","prev_km":1125.66,"back_km":28.6,"cont":"SHUT: Petrol station with shop is 0 km on. No action needed if you are above 130% cover."},{"km":1154.3,"n":"Petrol station with shop","cat":"COMPULSORY","hk":"petrol","open":[0,24],"conf":[6,23],"hlabel":"petrol station — often 24 h, not guaranteed","ele":885,"off":225,"detour":0.5,"detour_opt":null,"cls":"onroute","gap":116.0,"gap_climb":4544,"gap_high":3003,"next":"Shops, restaurants, hotels, ATM","next_km":1270.34,"prev":"Restaurant","prev_km":1154.3,"back_km":0.0,"cont":"Modelled as 24 h, but that is an assumption about a petrol station, not a fact. If it is closed or has no food: 116 km follows with nothing, +4544 m, up to 3003 m. Backtrack: Restaurant, 0 km behind."},{"km":1270.34,"n":"Shops, restaurants, hotels, ATM","cat":"COMPULSORY","hk":"major","open":[8,22],"conf":[8.5,21],"hlabel":"major resupply / supermarket","ele":1151,"off":10,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":109.2,"gap_climb":2872,"gap_high":2477,"next":"Several shops","next_km":1379.5,"prev":"Petrol station with shop","prev_km":1154.3,"back_km":116.0,"cont":"SHUT: wait for 08:00 — do not start 109 km and +2872 m without food. Backtracking is not an option — the last stop is 116 km behind you. Riding on means reaching Several shops in deficit."},{"km":1379.5,"n":"Several shops","cat":"IMPORTANT","hk":"bakkal","open":[7,20],"conf":[9,18],"hlabel":"village shop","ele":1579,"off":0,"detour":0.0,"detour_opt":null,"cls":"onroute","gap":58.6,"gap_climb":613,"gap_high":1677,"next":"FINISH","next_km":1438.07,"prev":"Shops, restaurants, hotels, ATM","prev_km":1270.34,"back_km":109.2,"cont":"SHUT: 59 km to FINISH. Carryable if you are already near full; otherwise wait for 07:00. Backtracking is not an option — the last stop is 109 km behind you."}];
+const BEDS=[{"km":231.27,"n":"CP1: Pansiyon Erdinc","ele":429,"kind":"cp","sure":true,"note":"Checkpoint, open 24 h","high":false,"escape_km":null},{"km":271.17,"n":"Water + Bivy spot","ele":1212,"kind":"bivy","sure":false,"note":"Marked bivy spot with water","high":false,"escape_km":262.8},{"km":299.6,"n":"Water + bivy spot","ele":1413,"kind":"bivy","sure":false,"note":"Marked bivy spot with water","high":false,"escape_km":17.3},{"km":351.53,"n":"Several shops, restaurants, hotels, off route","ele":1239,"kind":"town","sure":true,"note":"Town the organiser's own note says has hotels","high":false,"escape_km":182.0},{"km":479.79,"n":"The Shangri-La","ele":1692,"kind":"ruin","sure":false,"note":"Abandoned structure the organiser marked — hut, ruin or shepherd shelter. No door promised, but this is the kind of cover Valerio expects to use","high":false,"escape_km":32.0},{"km":631.7,"n":"CP2 : Taskale","ele":1376,"kind":"cp","sure":true,"note":"Checkpoint, open 24 h","high":false,"escape_km":181.8},{"km":774.04,"n":"The Hilton","ele":2448,"kind":"ruin","sure":false,"note":"Abandoned structure the organiser marked — hut, ruin or shepherd shelter. No door promised, but this is the kind of cover Valerio expects to use","high":true,"escape_km":10.4},{"km":782.73,"n":"The Four Seasons","ele":2108,"kind":"ruin","sure":false,"note":"Abandoned structure the organiser marked — hut, ruin or shepherd shelter. No door promised, but this is the kind of cover Valerio expects to use","high":false,"escape_km":9.1},{"km":878.7,"n":"Major resuppy, hotels, restaurants","ele":768,"kind":"town","sure":true,"note":"Town the organiser's own note says has hotels","high":false,"escape_km":542.2},{"km":1095.44,"n":"CP3 : Taurus Guesthouse","ele":1476,"kind":"cp","sure":true,"note":"Checkpoint, open 24 h","high":false,"escape_km":53.6},{"km":1173.76,"n":"Abandoned mine buildings","ele":2773,"kind":"ruin","sure":false,"note":"Abandoned structure the organiser marked — hut, ruin or shepherd shelter. No door promised, but this is the kind of cover Valerio expects to use","high":true,"escape_km":4.3},{"km":1219.49,"n":"Pera Palace","ele":2743,"kind":"ruin","sure":false,"note":"Abandoned structure the organiser marked — hut, ruin or shepherd shelter. No door promised, but this is the kind of cover Valerio expects to use","high":true,"escape_km":29.2},{"km":1270.34,"n":"Shops, restaurants, hotels, ATM","ele":1151,"kind":"town","sure":true,"note":"Town the organiser's own note says has hotels","high":false,"escape_km":142.4},{"km":1301.07,"n":"Couch","ele":1605,"kind":"lodging","sure":true,"note":"Tagged lodging by the organiser","high":false,"escape_km":96.5},{"km":1308.04,"n":"The White Lotus","ele":1861,"kind":"ruin","sure":false,"note":"Abandoned structure the organiser marked — hut, ruin or shepherd shelter. No door promised, but this is the kind of cover Valerio expects to use","high":false,"escape_km":85.0},{"km":1438.07,"n":"Erdemli Municipal Campsite","ele":6,"kind":"town","sure":true,"note":"Town the organiser's own note says has hotels","high":false,"escape_km":null}];
+const ALT_WARN=2200;
+const RESEARCH=[{"n":"Beşkonak rafting pansiyons (Klas Rafting Pansiyon)","kind":"commercial","km":198.3,"off_km":9.5,"oct":"likely open (rafting season)","conf":"H","notes":"Several lodges along the canyon road; CP1 area","on_route":false},{"n":"Selge Aile Pansiyon Restaurant Altınkaya","kind":"commercial","km":205.8,"off_km":0.1,"oct":"likely open (tourist site)","conf":"M","notes":"Above the canyon at Selge ruins; restaurant","on_route":true},{"n":"İbradı district centre","kind":"town","km":316.0,"off_km":11.6,"oct":"open","conf":"M","notes":"Shops; beds not verified","on_route":false},{"n":"Ormana Active Doğan Butik Otel","kind":"commercial","km":321.8,"off_km":11.2,"oct":"likely open","conf":"M","notes":"Stone-house guesthouse village","on_route":false},{"n":"Akseki hotels (Hakime Hanım Konağı)","kind":"commercial","km":351.6,"off_km":2.7,"oct":"open","conf":"H","notes":"Town with shops supermarket bakery hotel","on_route":true},{"n":"Gündoğmuş pansiyons","kind":"commercial","km":400.6,"off_km":18.3,"oct":"unknown","conf":"L","notes":"Listings exist; not verified","on_route":false},{"n":"Hadim Öğretmenevi","kind":"commercial","km":439.9,"off_km":10.0,"oct":"open","conf":"M","notes":"Teachers guesthouse; usually takes non-teachers","on_route":false},{"n":"Ermenek Selçuklu Otel","kind":"commercial","km":506.4,"off_km":27.5,"oct":"open","conf":"H","notes":"Town hotel","on_route":false},{"n":"Karaman city","kind":"town","km":559.7,"off_km":26.8,"oct":"open","conf":"H","notes":"Bail-out only; far off route","on_route":false},{"n":"Gülnar hotels","kind":"commercial","km":577.0,"off_km":62.6,"oct":"open","conf":"M","notes":"District centre","on_route":false},{"n":"Mut hotels (Royal Mut Çelik Grand Taş)","kind":"commercial","km":578.7,"off_km":30.0,"oct":"open","conf":"H","notes":"Göksu valley town on D715","on_route":false},{"n":"Taşkale guesthouses","kind":"commercial","km":633.8,"off_km":0.0,"oct":"unknown","conf":"L","notes":"Village of ~500; CP2 area","on_route":true},{"n":"Ereğli hotels","kind":"commercial","km":735.1,"off_km":34.7,"oct":"open","conf":"H","notes":"Large town; 24 h fuel","on_route":false},{"n":"Pozantı hotels (Akün Arıkan Taşpınar)","kind":"commercial","km":879.1,"off_km":0.5,"oct":"open","conf":"H","notes":"Motorway town; 24 h fuel-station markets","on_route":true},{"n":"Aladağ Otel Karsantı","kind":"commercial","km":956.5,"off_km":0.6,"oct":"likely open","conf":"M","notes":"District centre","on_route":true},{"n":"Yahyalı Kapuzbaşı motels","kind":"commercial","km":1052.5,"off_km":14.3,"oct":"open","conf":"M","notes":"Off route","on_route":false},{"n":"Sokullupınar camp area","kind":"bivy","km":1089.5,"off_km":4.2,"oct":"open","conf":"M","notes":"Aladağlar camp area with water; no services","on_route":false},{"n":"CP3 Demirkazık guesthouse","kind":"cp","km":1089.8,"off_km":0.0,"oct":"open 24/7","conf":"H","notes":"Manual: food and accommodation 24/7","on_route":true},{"n":"Taurus Guest House Çukurbağ","kind":"commercial","km":1095.5,"off_km":2.1,"oct":"likely open","conf":"M","notes":"Mountaineers guesthouse","on_route":true},{"n":"Şafak Pansiyon Çukurbağ","kind":"commercial","km":1095.5,"off_km":2.1,"oct":"likely open","conf":"H","notes":"Well-known Aladağlar base","on_route":true},{"n":"Çamardı hotels","kind":"commercial","km":1100.9,"off_km":4.7,"oct":"likely open","conf":"M","notes":"District centre Ecemiş valley","on_route":false},{"n":"Bor town","kind":"town","km":1101.9,"off_km":41.6,"oct":"open","conf":"L","notes":"Beds not verified","on_route":false},{"n":"Darboğaz cafes and small shops","kind":"town","km":1192.9,"off_km":3.6,"oct":"open","conf":"M","notes":"Gateway to Meydan yayla","on_route":true},{"n":"Meydan Yaylası camp area","kind":"bivy","km":1195.8,"off_km":0.4,"oct":"open (no services)","conf":"M","notes":"Free; no water toilets or signal","on_route":true},{"n":"Ulukışla hotels","kind":"commercial","km":1208.1,"off_km":13.6,"oct":"open","conf":"H","notes":"Town with shops restaurants hotels ATM","on_route":false},{"n":"Çamlıyayla (Tuncer Namrun Akın)","kind":"commercial","km":1270.0,"off_km":0.5,"oct":"seasonal risk","conf":"M","notes":"Summer yayla resort; October opening unverified","on_route":true},{"n":"Arslanköy Doğa Pansiyon Camping","kind":"commercial","km":1349.4,"off_km":6.7,"oct":"open year-round","conf":"H","notes":"Licensed; bungalows and camping; bring food","on_route":false},{"n":"Güzeloluk yayla","kind":"town","km":1388.8,"off_km":4.9,"oct":"seasonal risk","conf":"L","notes":"Summer resort village; October services unknown","on_route":false},{"n":"Erdemli hotels and finish campsite","kind":"commercial","km":1435.5,"off_km":1.6,"oct":"open","conf":"H","notes":"Finish","on_route":true}];
+const NOCOVER=[{"a":351.53,"b":631.7,"km":280.2,"from":"Several shops, restaurants, hotels, off route","to":"CP2 : Taskale"},{"a":631.7,"b":878.7,"km":247.0,"from":"CP2 : Taskale","to":"Major resuppy, hotels, restaurants"},{"a":0.0,"b":231.27,"km":231.3,"from":"START Antalya","to":"CP1: Pansiyon Erdinc"},{"a":878.7,"b":1095.44,"km":216.7,"from":"Major resuppy, hotels, restaurants","to":"CP3 : Taurus Guesthouse"},{"a":1095.44,"b":1270.34,"km":174.9,"from":"CP3 : Taurus Guesthouse","to":"Shops, restaurants, hotels, ATM"},{"a":1301.07,"b":1438.07,"km":137.0,"from":"Couch","to":"Erdemli Municipal Campsite"}];
+const SHELTER_ZONES=[[0,2,0,6],[5,2,0,36],[10,2,0,91],[15,2,0,419],[20,2,0,768],[25,2,0,1069],[30,2,0,970],[35,2,0,1056],[40,2,0,672],[45,2,0,492],[50,2,0,676],[55,2,0,610],[60,2,0,595],[65,2,0,624],[70,2,0,800],[75,2,0,746],[80,2,0,849],[85,1,1,778],[90,1,1,773],[95,1,1,832],[100,1,1,728],[105,1,1,459],[110,1,1,354],[115,1,1,511],[120,1,1,357],[125,1,1,82],[130,1,1,65],[135,1,1,38],[140,1,1,30],[145,1,1,27],[150,1,1,52],[155,1,1,119],[160,1,1,248],[165,1,1,479],[170,1,1,179],[175,1,1,232],[180,1,1,419],[185,1,1,620],[190,1,1,932],[195,1,1,840],[200,1,1,933],[205,1,1,949],[210,1,1,1012],[215,1,1,1113],[220,1,1,943],[225,1,1,543],[230,1,1,454],[235,2,0,452],[240,2,0,528],[245,2,0,622],[250,2,0,884],[255,2,0,1404],[260,2,0,1565],[265,2,0,1401],[270,2,0,1209],[275,2,0,1630],[280,2,0,1545],[285,2,0,1480],[290,2,0,1531],[295,2,0,1530],[300,2,0,1390],[305,2,0,1209],[310,2,0,1059],[315,2,0,1023],[320,2,0,900],[325,2,0,1007],[330,1,1,1038],[335,1,1,1172],[340,1,1,1232],[345,1,1,1506],[350,1,1,1338],[355,1,1,1292],[360,1,1,1672],[365,1,1,1826],[370,1,1,1953],[375,0,1,2167],[380,0,1,2080],[385,1,1,1978],[390,1,1,1970],[395,0,1,2006],[400,0,1,2017],[405,0,1,2072],[410,0,1,2072],[415,0,1,2184],[420,1,1,1986],[425,1,1,1942],[430,1,1,1943],[435,1,1,1912],[440,1,1,1777],[445,1,1,1863],[450,1,1,1860],[455,1,1,1693],[460,1,1,1658],[465,1,1,1829],[470,1,1,1748],[475,1,1,1682],[480,1,1,1695],[485,2,0,1566],[490,2,0,1597],[495,2,0,1604],[500,2,0,1539],[505,2,0,1342],[510,2,0,1375],[515,2,0,984],[520,2,0,1117],[525,1,1,970],[530,1,1,1054],[535,1,1,628],[540,1,1,422],[545,1,1,718],[550,1,1,860],[555,1,1,1236],[560,1,1,1550],[565,1,1,1632],[570,1,1,1686],[575,1,1,1683],[580,1,1,1688],[585,1,1,1637],[590,1,1,1654],[595,1,1,1572],[600,1,1,1336],[605,1,1,1522],[610,1,1,1598],[615,1,1,1691],[620,1,1,1679],[625,1,1,1592],[630,1,1,1478],[635,1,1,1349],[640,1,1,1410],[645,1,1,1504],[650,1,1,1594],[655,1,1,1644],[660,1,1,1692],[665,1,1,1588],[670,1,1,1723],[675,1,1,1740],[680,1,1,1651],[685,1,1,1808],[690,1,1,1905],[695,0,1,2103],[700,0,1,2237],[705,0,1,2288],[710,0,1,2350],[715,0,1,2613],[720,0,1,2802],[725,0,1,2841],[730,0,1,2878],[735,0,1,2844],[740,0,1,2689],[745,0,1,2691],[750,0,1,2772],[755,0,1,2781],[760,0,1,2705],[765,0,1,2683],[770,0,1,2288],[775,0,1,2377],[780,0,1,2285],[785,1,1,1896],[790,1,1,1731],[795,1,1,1610],[800,1,1,1751],[805,1,1,1469],[810,1,1,1070],[815,1,1,906],[820,2,0,1138],[825,2,0,1122],[830,2,0,989],[835,2,0,1080],[840,2,0,1150],[845,2,0,1165],[850,2,0,985],[855,2,0,925],[860,2,0,562],[865,2,0,689],[870,2,0,712],[875,2,0,753],[880,2,0,766],[885,2,0,1118],[890,2,0,1546],[895,2,0,1385],[900,2,0,1600],[905,2,0,1513],[910,2,0,1178],[915,2,0,853],[920,2,0,933],[925,2,0,915],[930,2,0,809],[935,2,0,775],[940,2,0,917],[945,2,0,800],[950,2,0,714],[955,2,0,736],[960,1,1,657],[965,1,1,682],[970,1,1,833],[975,1,1,970],[980,1,1,1216],[985,1,1,976],[990,1,1,1056],[995,1,1,886],[1000,1,1,709],[1005,1,1,788],[1010,1,1,1050],[1015,1,1,1111],[1020,1,1,1186],[1025,1,1,1462],[1030,1,1,1740],[1035,1,1,1846],[1040,1,1,1816],[1045,0,1,2044],[1050,1,1,1971],[1055,1,1,1900],[1060,0,1,2290],[1065,0,1,2796],[1070,0,1,3224],[1075,0,1,2710],[1080,0,1,2167],[1085,1,1,1656],[1090,2,0,1587],[1095,2,0,1488],[1100,2,0,1401],[1105,2,0,1365],[1110,2,0,1330],[1115,2,0,1271],[1120,2,0,1231],[1125,2,0,1201],[1130,2,0,1234],[1135,2,0,1276],[1140,2,0,1375],[1145,2,0,1254],[1150,2,0,945],[1155,1,1,904],[1160,1,1,1134],[1165,1,1,1579],[1170,0,1,2274],[1175,0,1,2731],[1180,1,1,1997],[1185,1,1,1651],[1190,1,1,1983],[1195,0,1,2310],[1200,0,1,2609],[1205,0,1,2246],[1210,0,1,2344],[1215,0,1,2787],[1220,0,1,2755],[1225,0,1,2762],[1230,0,1,2837],[1235,0,1,2946],[1240,0,1,2802],[1245,0,1,2584],[1250,0,1,2181],[1255,1,1,1854],[1260,1,1,1737],[1265,1,1,1371],[1270,1,1,1182],[1275,1,1,1201],[1280,1,1,1214],[1285,1,1,903],[1290,1,1,872],[1295,1,1,1298],[1300,1,1,1561],[1305,1,1,1912],[1310,1,1,1957],[1315,0,1,2382],[1320,0,1,2329],[1325,0,1,2439],[1330,0,1,2323],[1335,0,1,2259],[1340,0,1,2297],[1345,0,1,2283],[1350,0,1,2238],[1355,0,1,2134],[1360,1,1,1996],[1365,1,1,1768],[1370,1,1,1600],[1375,1,1,1702],[1380,2,0,1549],[1385,2,0,1654],[1390,2,0,1557],[1395,2,0,1235],[1400,2,0,1097],[1405,2,0,947],[1410,2,0,667],[1415,2,0,631],[1420,2,0,272],[1425,2,0,187],[1430,2,0,61],[1435,2,0,12]];
+
+const CURVE=[[-12,21.554954809072868],[-8,21.554954809072868],[-4,21.554954809072868],[-2,21.554954809072868],[0,19.6],[1,16.43],[2,14.15],[3,12.27],[4,10.77],[5,9.73],[6,8.84],[8,7.42],[10,6.4],[12,5.56],[16,4.2],[20,3.38]];
+const CHO=90, MIXG=90, MIXML=650, MIXNA=0;
+const BOT_DEFAULT=[{"id":"b1","n":"Bladder 2 L","cap":2000,"mix":0},{"id":"b2","n":"Bottle 650 ml — mix","cap":650,"mix":1},{"id":"b3","n":"Bottle 650 ml — mix","cap":650,"mix":1},{"id":"b4","n":"Soft flask (size TBC)","cap":500,"mix":0},{"id":"b5","n":"Soft flask (size TBC)","cap":500,"mix":0},{"id":"b6","n":"Shop bottle 1.5 L","cap":1500,"mix":0}];
+const FOODS={"carry":[{"id":"gel","n":"Gel 40 g","c":40,"w":0,"na":30,"k":0},{"id":"gelc","n":"Gel + caffeine","c":40,"w":0,"na":30,"k":100},{"id":"bar","n":"Energy bar","c":30,"w":0,"na":40,"k":0},{"id":"mix","n":"Carb mix dose","c":90,"w":0,"na":0,"k":0},{"id":"elec","n":"Electrolyte tab","c":0,"w":0,"na":300,"k":0}],"bakkal":[{"id":"simit","n":"Simit","c":45,"w":0,"na":430,"k":0},{"id":"ekmek","n":"Ekmek ½ loaf","c":60,"w":0,"na":580,"k":0},{"id":"bisk","n":"Biscuit pack","c":60,"w":0,"na":180,"k":0},{"id":"seker","n":"Toz şeker 100 g","c":100,"w":0,"na":0,"k":0},{"id":"helva","n":"Helva 50 g","c":28,"w":0,"na":90,"k":0},{"id":"kayisi","n":"Dried apricots 50 g","c":30,"w":0,"na":5,"k":0},{"id":"cikol","n":"Chocolate bar","c":30,"w":0,"na":60,"k":10},{"id":"ayran","n":"Ayran 300 ml","c":11,"w":300,"na":380,"k":0},{"id":"kola","n":"Cola 330 ml","c":35,"w":330,"na":15,"k":32},{"id":"su","n":"Water 1.5 L","c":0,"w":1500,"na":0,"k":0}],"lokanta":[{"id":"corba","n":"Çorba + bread","c":45,"w":250,"na":900,"k":0},{"id":"pilav","n":"Pilav","c":80,"w":0,"na":600,"k":0},{"id":"pide","n":"Pide","c":90,"w":0,"na":1100,"k":0},{"id":"cay","n":"Çay (2 sugars)","c":10,"w":100,"na":0,"k":30}]};
+const QUICK=[{"n":"Gel","c":40,"w":0,"na":30,"k":0},{"n":"Bar","c":30,"w":0,"na":40,"k":0},{"n":"Bottle","c":0,"w":600,"na":0,"k":0},{"n":"Ayran","c":11,"w":300,"na":380,"k":0},{"n":"Çay","c":10,"w":100,"na":0,"k":30},{"n":"Çorba","c":45,"w":250,"na":900,"k":0},{"n":"Meal","c":90,"w":200,"na":900,"k":0}];
+function STOCK0(){return {"gel":20,"bar":4,"mix":12,"elec":12};}
+const SCEN=[
+ {id:'push',n:'PUSH',sl:3.5,st:2.5,d:'18 h a day. His Pan Celtic habit, sharpened.'},
+ {id:'plan',n:'PLAN',sl:4.0,st:3.5,d:'16.5 h a day. Pan Celtic stops plus Turkish friction.'},
+ {id:'surv',n:'SURVIVE',sl:5.0,st:5.5,d:'What weather and fatigue do if you let them.'}];
+function hrCaps(){const f=fatigueIdx(),sl=num('#i-slp'),day=raceDay(),e=eleAt(S.km),ftp=345;
+ let np=ftp*(day<=2?0.57:0.52), climb=ftp*(day<=2?0.70:0.65);
+ if(e>2500){np*=0.94;climb*=0.94;} if(f>=2){np*=0.92;climb*=0.92;} if(sl<4){np*=0.95;climb*=0.95;}
+ np=Math.round(np);climb=Math.round(climb);
+ const early=(raceClock()-START)/3600e3<6;
+ return{np,climb,cap:early?145:null,early,f,lt2:165,
+  label:'NP '+np+' W', sub:'Climbs under '+climb+' W'+(early?' · HR under 145 for the first 6 h':'')+'.'};}
+function hrCard(hc){const hrNow=num('#i-hr'),npNow=num('#i-np');
+ return `<div class="card"><div class="sec" style="margin-top:0">Power — HR is context</div><div class="g3">
+  <div class="met g"><div class="ml">NP target</div><div class="mv">${hc.np}</div><div class="ms">W</div></div>
+  <div class="met a"><div class="ml">Climb cap</div><div class="mv">${hc.climb}</div><div class="ms">W · Garmin alert</div></div>
+  <div class="met b"><div class="ml">HR cap</div><div class="mv">${hc.cap||'—'}</div><div class="ms">${hc.early?'first 6 h':'not used'}</div></div></div>
+  <div class="note">Anchors: Land Between (517 km, 28 h) NP <b>215</b> W, climbs 230–258 · Pan Celtic days 2–6 climbs <b>186–222 W</b>.
+  <b>His HR falls ~20 bpm at the same power over a day</b>, so an HR cap after the first hours would let him overcook. Ride the watts.${npNow?(npNow>hc.np*1.08?' <b style="color:var(--warn)">Current '+npNow+' W is over target.</b>':' Current '+npNow+' W.'):''}</div></div>`;}
+
+/* ── helpers ─────────────────────────────────────────────────────────────── */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const num=id=>parseFloat($(id).value)||0;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function now(){const v=$('#i-now').value;return v?new Date(v):new Date();}
+function raceClock(){const t=now();return t<START?new Date(START.getTime()):t;}
+function preRace(){return now()<START;}
+function fmtH(h){if(!isFinite(h))return'—';const s=h<0?'−':'';h=Math.abs(h);
+ let tm=Math.round(h*60);const d=Math.floor(tm/1440);tm-=d*1440;
+ const hh=Math.floor(tm/60),mm=tm-hh*60;return s+(d?d+'d ':'')+hh+'h '+String(mm).padStart(2,'0')+'m';}
+function fmtDT(d){if(!(d instanceof Date)||isNaN(d))return'—';
+ return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()]+' '+d.getDate()+' '+
+ ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+' '+
+ String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}
+function hhmm(h){if(h==null)return'—';const H=Math.floor(h);return String(H).padStart(2,'0')+':'+String(Math.round((h-H)*60)%60).padStart(2,'0');}
+function solar(d){const st=new Date(d.getFullYear(),0,0),doy=Math.floor((d-st)/864e5);
+ const dec=-23.44*Math.cos(2*Math.PI/365*(doy+10))*Math.PI/180, la=LAT*Math.PI/180;
+ const cH=-Math.tan(la)*Math.tan(dec);
+ if(cH>1)return{rise:null,set:null}; if(cH<-1)return{rise:0,set:24};
+ const H=Math.acos(cH)*180/Math.PI/15, noon=12-(LON-TZ*15)/15;
+ return{rise:noon-H,set:noon+H};}
+function isDark(d){const s=solar(d),h=d.getHours()+d.getMinutes()/60;return !(h>=s.rise&&h<s.set);}
+
+/* ── route maths off the real profile ────────────────────────────────────── */
+function eleAt(km){km=clamp(km,0,TOTAL);
+ let lo=0,hi=PROF.length-1;
+ while(hi-lo>1){const m=(lo+hi)>>1; if(PROF[m][0]<=km)lo=m; else hi=m;}
+ const[a,ea]=PROF[lo],[b,eb]=PROF[hi];
+ return b>a?ea+(eb-ea)*(km-a)/(b-a):ea;}
+function hazAt(km){return HAZ.filter(h=>km>=h.a&&km<h.b);}
+/* The organiser's own hazard notes change how fast the ground goes.
+   These are judgements, not measurements — they are listed on the Route tab
+   so they can be argued with rather than hidden in the engine. */
+function hazMult(km,wet){let m=1,cap=99;
+ for(const h of hazAt(km)){
+  if(h.t==='hab'){cap=Math.min(cap,3.5);}
+  else if(h.t==='ford'){cap=Math.min(cap,2.5);}
+  else if(h.t==='rough'){m*=0.60;}
+  else if(h.t==='mud'){m*=wet?0.45:0.90;}
+  else if(h.t==='gravel'){m*=0.90;}
+  else if(h.t==='alpine'){m*=0.85;}
+  else if(h.t==='detour'){m*=0.80;}
+  else if(h.t==='road'){m*=1.10;}}
+ return{m,cap};}
+function curveSpeed(g){g=clamp(g,-12,22);
+ for(let i=1;i<CURVE.length;i++){if(g<=CURVE[i][0]){const[a,sa]=CURVE[i-1],[b,sb]=CURVE[i];
+  return sa+(sb-sa)*(g-a)/Math.max(b-a,.001);}}return CURVE[CURVE.length-1][1];}
+function altFactor(e){return e<1500?1:e<2000?0.98:e<2500?0.95:e<3000?0.91:0.88;}
+function mults(){const ter=num('#r-ter')||1.12, fat=fatigueMult();
+ const dark=isDark(now())?0.92:1, wind=clamp(1-num('#i-wind')*0.012,0.85,1);
+ const rain=num('#i-rain')>4?0.90:num('#i-rain')>1?0.95:1;
+ return{ter,fat,dark,wind,rain};}
+/* Walk the real profile segment by segment. 827 segments — exact, not resampled. */
+function modelTime(a,b){if(b<=a)return 0; const m=mults(), wet=isWet();
+ let t=0, i=0;
+ while(i<PROF.length-1&&PROF[i+1][0]<=a)i++;
+ for(;i<PROF.length-1;i++){
+  const s=Math.max(a,PROF[i][0]), e=Math.min(b,PROF[i+1][0]);
+  if(e<=s){if(PROF[i][0]>=b)break; continue;}
+  const dk=PROF[i+1][0]-PROF[i][0];
+  const g=dk>0?(PROF[i+1][1]-PROF[i][1])/(dk*1000)*100:0;
+  const mid=(s+e)/2, hz=hazMult(mid,wet);
+  let v=curveSpeed(g)*altFactor(eleAt(mid))*m.dark*m.wind*m.rain*hz.m/(m.ter*m.fat);
+  v=Math.min(v,hz.cap);
+  t+=(e-s)/Math.max(v,1.5);
+  if(PROF[i+1][0]>=b)break;}
+ return t;}
+function effSpeed(){const g=num('#i-spd'); if(g>0)return{v:g,src:'Garmin'};
+ const d=Math.min(20,TOTAL-S.km); if(d<=0)return{v:8,src:'model'};
+ const t=modelTime(S.km,S.km+d); return{v:t>0?d/t:8,src:'model'};}
+function raceDay(){return clamp(Math.floor((raceClock()-START)/864e5)+1,1,11);}
+function fatigueMult(){const sl=num('#i-slp'),day=raceDay();
+ let m=sl>=6?0.94:sl>=5?0.97:sl>=4?1.00:sl>=3?1.05:sl>=2?1.12:1.22;
+ if(day>7)m+=(day-7)*0.012; return m;}
+function fatigueIdx(){const sl=num('#i-slp'),aw=num('#i-awk');let f=0;
+ if(raceDay()>=4)f++; if(sl<4)f++; if(aw>18)f++; return clamp(f,0,3);}
+function etaTo(km){const v=effSpeed().v;return new Date(raceClock().getTime()+Math.max(0,(km-S.km))/v*3600e3);}
+/* Elapsed-time ETA: riding hours per day, not clock hours. */
+function rideH(sleep,stops){return Math.max(5,24-sleep-stops);}
+function finishAt(sleep,stops,fromKm,fromT){
+ const mov=modelTime(fromKm!=null?fromKm:S.km,TOTAL);
+ const r=rideH(sleep,stops);
+ return new Date((fromT||raceClock()).getTime()+mov*24/r*3600e3);}
+
+/* ═════════════════════════ WEATHER ═════════════════════════════════════════
+   Open-Meteo, free and keyless, called from the phone (not from any server).
+   Three points are fetched: where he is, where the model puts him in 6 h, and
+   in 12 h. The timeline then asks "what will I be riding through, and when",
+   which is the question that matters — not "what is it doing here right now".
+   past_days=1 is fetched too, because the mud section's state depends on how
+   much rain has already fallen, not on what is falling now. */
+function geoAt(km){km=clamp(km,0,TOTAL);
+ for(let i=1;i<GEO.length;i++){if(km<=GEO[i][0]){const[a,la,lo]=GEO[i-1],[b,lb,lob]=GEO[i];
+  const f=(km-a)/Math.max(b-a,.001);return[la+(lb-la)*f,lo+(lob-lo)*f];}}
+ return[GEO[GEO.length-1][1],GEO[GEO.length-1][2]];}
+function kmAfter(h){let lo=S.km,hi=TOTAL;
+ for(let i=0;i<24;i++){const m=(lo+hi)/2; if(modelTime(S.km,m)<h)lo=m; else hi=m;}
+ return lo;}
+let WXBUSY=0;
+function wxStale(){return !S.wx||!S.wx.pts||(Date.now()-S.wx.fetched)>45*60e3;}
+async function fetchWx(force){
+ if(WXBUSY)return; if(!force&&!wxStale())return;
+ if(!navigator.onLine){return;}
+ WXBUSY=1; draw();
+ try{
+  const spots=[[S.km,'here'],[kmAfter(6),'+6h'],[kmAfter(12),'+12h']];
+  const out=[];
+  for(const[km,lab]of spots){
+   const[la,lo]=geoAt(km);
+   const u='https://api.open-meteo.com/v1/forecast?latitude='+la.toFixed(3)+'&longitude='+lo.toFixed(3)+
+    '&hourly=temperature_2m,apparent_temperature,precipitation,precipitation_probability,'+
+    'wind_speed_10m,wind_gusts_10m,cloud_cover,weather_code&past_days=1&forecast_days=3'+
+    '&timezone=Europe%2FIstanbul';
+   const r=await fetch(u,{cache:'no-store'});
+   if(!r.ok)throw new Error('HTTP '+r.status);
+   const j=await r.json();
+   /* Open-Meteo reports temperature at ITS OWN model-grid elevation, which in the
+      Taurus can be several hundred metres from the route. It tells us that height;
+      use it as the reference for any lapse rather than our own profile. */
+   out.push({km,lab,la,lo,h:j.hourly,gele:(j.elevation!=null?j.elevation:null)});}
+  S.wx={pts:out,fetched:Date.now(),atKm:S.km,err:null};
+  applyWx();
+ }catch(e){ S.wx=S.wx||{}; S.wx.err=e.message; }
+ WXBUSY=0; draw();}
+
+/* hour index in an Open-Meteo array for a given Date */
+function wxIdx(p,d){const t=p.h.time;
+ for(let i=0;i<t.length;i++){if(new Date(t[i])>=new Date(d.getTime()-30*60e3))return i;}
+ return -1;}
+/* the forecast he will actually meet: for each hour ahead, pick the fetch point
+   nearest to where he will be at that hour */
+function wxTimeline(hours){
+ if(!S.wx||!S.wx.pts||!S.wx.pts.length)return [];
+ const out=[], base=raceClock();
+ for(let h=0;h<hours;h++){
+  const at=new Date(base.getTime()+h*3600e3), km=kmAfter(h);
+  let best=S.wx.pts[0], bd=1e9;
+  for(const p of S.wx.pts){const d=Math.abs(p.km-km); if(d<bd){bd=d;best=p;}}
+  const i=wxIdx(best,at); if(i<0)continue;
+  const H=best.h;
+  out.push({h,at,km,
+   t:H.temperature_2m[i], app:H.apparent_temperature[i],
+   mm:H.precipitation[i]||0, pop:H.precipitation_probability[i]||0,
+   wind:(H.wind_speed_10m[i]||0)/3.6, gust:(H.wind_gusts_10m[i]||0)/3.6,
+   cloud:H.cloud_cover[i], ele:eleAt(km),
+   gele:(best.gele!=null?best.gele:eleAt(km))});}
+ return out;}
+/* rain already fallen in the last N hours, at the nearest fetch point */
+function rainPast(hrs){
+ if(!S.wx||!S.wx.pts||!S.wx.pts.length)return null;
+ const p=S.wx.pts[0], iNow=wxIdx(p,raceClock()); if(iNow<0)return null;
+ let s=0; for(let i=Math.max(0,iNow-hrs);i<iNow;i++)s+=p.h.precipitation[i]||0;
+ return s;}
+function applyWx(){const tl=wxTimeline(1); if(!tl.length)return;
+ const a=tl[0];
+ $('#i-tmp').value=Math.round(a.t); $('#i-wind').value=Math.round(a.wind*10)/10;
+ $('#i-rain').value=Math.round(a.mm*10)/10;}
+function isWet(){return +$('#i-wet').value>0||num('#i-rain')>=0.5||(rainPast(6)||0)>=4;}
+
+/* ─── the exposure model ──────────────────────────────────────────────────
+   The thing that hurts is not rain, and not cold. It is rain AND cold AND wind
+   together, and the manual's own near-miss was exactly that: a rider who got
+   wet, got cold, and lost the judgement needed to fix it.
+
+   Teff = apparent temperature, minus a wet penalty that grows with wind.
+   A soaked rider in 5 m/s of wind loses roughly 8 °C of felt temperature; that
+   is the number the thresholds below are built on. Altitude tightens the bands
+   because escape takes longer up high. */
+function wetPenalty(mm,wind,wetState){
+ const w=Math.max(mm>=0.5?1:0, wetState>0?wetState/2:0);
+ if(w<=0)return 0;
+ return Math.min(9, (3+1.3*wind)*Math.min(1,w));}
+function exposure(t,app,mm,wind,ele,wetState){
+ const base=(app!=null&&isFinite(app))?app:t-wind*0.7;
+ const teff=base-wetPenalty(mm,wind,wetState);
+ const wet=mm>=0.5||wetState>0;
+ let band;                                    // 0 ride · 1 dress · 2 shelter at next · 3 shelter now
+ if(!wet){
+  /* Dry cold is a clothing problem, not an emergency. He is carrying a down
+     jacket, waterproof trousers and two pairs of gloves because the manual
+     requires them. Riding generates heat; stopping is what kills you. */
+  band = teff>=5?0 : teff>=-4?1 : teff>=-10?2 : 3;
+ } else {
+  /* Wet changes everything — this is the ladder the manual's near-miss sits on. */
+  if(teff>=8)band=mm>=10?1:0;
+  else if(teff>=3)band=mm>=7?2:1;
+  else if(teff>=0)band=mm>=2.5?3:(mm>=0.5?2:1);
+  else band=mm>=0.5?3:2;
+  if(ele>=2500)band=Math.min(3,band+1);
+  else if(ele>=2000&&mm>=1)band=Math.min(3,band+1);
+ }
+ return{teff,band,wet};}
+const BANDTXT=['Ride on','Dress now','Shelter at the next covered point','SHELTER NOW'];
+function expNow(){const tl=wxTimeline(1), a=tl.length?tl[0]:null;
+ const t=a?a.t:num('#i-tmp'), app=a?a.app:null, mm=a?Math.max(a.mm,num('#i-rain')):num('#i-rain');
+ const wind=a?Math.max(a.wind,num('#i-wind')):num('#i-wind');
+ return exposure(t,app,mm,wind,eleAt(S.km),+$('#i-wet').value);}
+/* the next shower worth reacting to, and how long until it lands */
+function nextShower(){
+ const tl=wxTimeline(24);
+ for(const x of tl){
+  const e=exposure(x.t,x.app,x.mm,x.wind,x.ele,+$('#i-wet').value);
+  if(x.mm>=1.5||e.band>=2)return{...x,...e};}
+ return null;}
+function wettestAhead(h){const tl=wxTimeline(h);let b=null;
+ for(const x of tl){if(!b||x.mm>b.mm)b=x;} return b;}
+
+/* ═════════════════════════ SLEEP — covered only ════════════════════════════
+   Valerio's rule: sleep under a roof. The organiser marked twelve covered
+   options; six are rough shelters with joke hotel names and their real nature
+   is NOT verified — they could be a shepherd's hut or a wall. That caveat
+   travels with every recommendation here. */
+function beds(){return POI.filter(p=>p.k==='bed'||p.k==='cp');}
+function bedsAhead(n){const r=[];
+ for(const b of beds()){if(b.km<=S.km+0.5)continue;
+  const h=modelTime(S.km,b.km), eta=new Date(raceClock().getTime()+h*3600e3);
+  const tl=wxTimeline(Math.min(23,Math.ceil(h)));
+  let rain=0; for(const x of tl)rain=Math.max(rain,x.mm);
+  r.push({...b,h,eta,dist:b.km-S.km,rain,
+   sure:b.k==='cp'||/couch|guesthouse|pansiyon/i.test(b.n),
+   cold:b.e>=2300});
+  if(r.length>=n)break;}
+ return r;}
+function sleepCmd(){const sl=num('#i-slp'),aw=num('#i-awk'),e=expNow();
+ if(e.band>=3)return{c:'SHELTER NOW — NOT A SLEEP DECISION',cls:'r',
+  s:'Felt temperature '+e.teff.toFixed(0)+' °C with rain. Get under cover and get dry before you think about anything else. A wet sleeping bag is how the organisers nearly lost a rider.'};
+ if(sl<2)return{c:'SLEEP NOW — 120 MIN',cls:'r',s:sl.toFixed(1)+' h in 30 h. Nothing you decide from here is reliable.'};
+ if(aw>22)return{c:'HARD LOCK — SLEEP',cls:'r',s:aw.toFixed(0)+' h awake.'};
+ if(sl<4)return{c:'SLEEP AT THE NEXT ROOF',cls:'a',s:sl.toFixed(1)+' h in 30 h. Take the next covered option that is not above 2,300 m.'};
+ return{c:'GO — SLEEP BANKED',cls:'g',s:sl.toFixed(1)+' h in 30 h, '+aw.toFixed(0)+' h awake.'};}
+
+/* ═════════════════════════ FUEL ════════════════════════════════════════════ */
+function botCap(){return S.bottles.reduce((a,b)=>a+(+b.cap||0),0);}
+function bottleTot(){let w=0,c=0,na=0;
+ for(const b of S.bottles){const ml=(S.bot[b.id]||0)/100*(+b.cap||0); w+=ml;
+  if(b.mix){c+=MIXG*(ml/MIXML); na+=MIXNA*(ml/MIXML);}}
+ return{w,c,na};}
+function solidTot(){let c=0,na=0,k=0;
+ for(const g in FOODS)for(const f of FOODS[g]){const q=S.stock[f.id]||0;
+  if(q){c+=q*f.c;na+=q*f.na;k+=q*f.k;}}
+ return{c,na,k};}
+function gutCap(){const g=+$('#i-gut').value;return g===1?60:g===2?40:999;}
+function choRate(){return Math.min(num('#r-cho')||CHO,gutCap());}
+function fluidRate(){const t=num('#i-tmp');
+ const base=t<=3?0.30:t<=8?0.38:t<=15?0.50:t<=20?0.65:t<=25?0.80:1.0;
+ return base*(eleAt(S.km)>2500?1.15:1);}
+function naRate(){return fluidRate()*(num('#r-na')||700);}
+const SELLS=p=>p.k==='shop'||p.k==='food'||p.k==='cp';
+function nextShop(km){return POI.find(p=>p.km>km+0.1&&SELLS(p))||POI[POI.length-1];}
+function nextWater(km){return POI.find(p=>p.km>km+0.1&&(SELLS(p)||p.k==='water'||p.k==='bed'))||POI[POI.length-1];}
+function nextGap(){return GAPS.find(g=>g.b>S.km);}
+function fuelPlan(){
+ const f=nextShop(S.km), h=modelTime(S.km,f.km);
+ const sol=solidTot(), bt=bottleTot();
+ const needC=h*choRate(), haveC=sol.c+bt.c;
+ const g=nextGap(); let carry=null;
+ if(g&&S.km<=g.a+2){const a=Math.max(S.km,g.a), hh=modelTime(a,g.b);
+  carry={a,b:g.b,h:hh,cho:hh*choRate(),wat:hh*fluidRate()};}
+ return{f,h,d:f.km-S.km,needC,haveC,
+  cov:needC>0?haveC/(needC*1.30):9,
+  buy:Math.max(0,Math.ceil(needC*1.30-haveC)),carry,gap:g};}
+function waterPlan(){
+ const w=nextWater(S.km), h=modelTime(S.km,w.km), cap=botCap(), have=bottleTot().w;
+ const need=h*fluidRate()*1000, buf=need*1.15;
+ return{w,h,need,buf,have,cap,cover:buf>0?have/buf:9,
+  short:Math.max(0,buf-have),over:buf>cap};}
+function stats(hours){const t=now(),cut=hours>0?t.getTime()-hours*3600e3:-Infinity;
+ let c=0,w=0,na=0,k=0;
+ for(const e of S.log){if(e.t.getTime()<cut||e.t>t)continue;c+=e.c||0;w+=e.w||0;na+=e.na||0;k+=e.k||0;}
+ const el=Math.max(0,(raceClock()-START)/3600e3);
+ const span=hours>0?Math.max(.25,Math.min(hours,el||hours)):Math.max(.25,el);
+ return{c,w,na,k,span,cR:c/span,wR:w/span/1000,naR:na/span};}
+function logIt(n,c,w,na,k){S.log.unshift({n,c,w,na,k,t:now()});draw();}
+
+/* ═══════════════════════ SLEEP AND RESUPPLY PLANNING ═══════════════════════
+   Everything structural — which stop is compulsory, what the contingency is, which
+   beds are guaranteed — was precomputed in enrich.py and arrives as RESUP / BEDS /
+   NOCOVER / RESEARCH. This file does only what needs the live clock and position.
+
+   The sleep rule, as asked for:
+     · aim to be asleep between 23:00 and 03:00
+     · a roof, not a bivy, wherever one exists
+     · altitude is NOT a veto. A functional structure high up beats open ground
+       lower down. What it costs is computed: how cold inside, and how far to
+       descend 500 m if the weather turns
+   ═══════════════════════════════════════════════════════════════════════════ */
+const SLEEP_FROM=23, SLEEP_TO=3;          // the window he wants to be asleep inside
+const ARRIVE_FROM=20.5, ARRIVE_TO=3.5;    // when arriving at a bed still counts
+
+/* How far does he get on `movH` hours of actual moving? */
+function advance(km,movH){
+ if(movH<=0)return km;
+ let lo=km,hi=TOTAL;
+ for(let i=0;i<30;i++){const m=(lo+hi)/2; if(modelTime(km,m)<movH)lo=m; else hi=m;}
+ return lo;}
+/* Clock hours needed to cover km a→b, including the pro-rata share of stops.
+   While awake he is not riding every minute: moveFrac is the share of waking time
+   actually spent moving, taken from his own sleep and stop numbers. */
+function moveFrac(sl,st){return rideH(sl,st)/Math.max(1,24-sl);}
+function clockHours(a,b,sl,st){return modelTime(a,b)/Math.max(0.2,moveFrac(sl,st));}
+
+function hourOf(d){return d.getHours()+d.getMinutes()/60;}
+function inWindow(h,from,to){return from<=to ? (h>=from&&h<=to) : (h>=from||h<=to);}
+
+/* ── what a high shelter actually costs ──────────────────────────────────
+   Altitude is not a hazard in itself. A functional building at 2,773 m beats a
+   bivy at 1,800 m. What altitude drives is two things, and they are computed
+   rather than assumed:
+     COLD   — the forecast temperature, lapsed to the structure's own altitude,
+              against the kit the manual made him carry (system good to −5 °C,
+              bag +5 °C comfort)
+     ESCAPE — how far he must ride before the ground is 500 m lower. If the
+              weather turns at 2,773 m that distance is the whole question, and
+              it does not track altitude at all: the mine buildings at 2,773 m
+              are 4 km from relief, Pera Palace at 2,743 m is 29 km.
+   Reaching it is the third test: darkness plus technical ground is its own risk. */
+const LAPSE=0.0065;                      // °C per metre
+function bedCold(b,arr){
+ const tl=wxTimeline(24);
+ let fc=null;
+ for(const x of tl){if(x.at>=new Date(arr.getTime()-60*60e3)){fc=x;break;}}
+ if(!fc)return null;
+ const ref=(fc.gele!=null?fc.gele:fc.ele);     // the height the forecast is FOR
+ const tAt=fc.t-(b.ele-ref)*LAPSE;
+ const tNight=tAt-3;                     // dawn minimum below the arrival-hour value
+ const wind=fc.wind, mm=fc.mm;
+ let verdict,lvl;
+ if(tNight>=5){verdict='comfortable';lvl=0;}
+ else if(tNight>=0){verdict='cold — down jacket on inside the bag';lvl=1;}
+ else if(tNight>=-5){verdict='at the design limit of your system';lvl=2;}
+ else {verdict='BELOW the −5 °C your kit was specified for';lvl=3;}
+ return{tAt,tNight,wind,mm,verdict,lvl};}
+function reachRisk(fromKm,b,arr){
+ const hz=HAZ.filter(h=>h.b>fromKm&&h.a<b.km&&['hab','rough','ford','alpine'].includes(h.t));
+ const dark=isDark(arr);
+ const tl=wxTimeline(Math.min(23,Math.ceil(clockHours(fromKm,b.km,4,num('#i-stop')))));
+ let rain=0; for(const x of tl)rain=Math.max(rain,x.mm);
+ const flags=[];
+ if(dark&&hz.length)flags.push('arriving in the dark across '+hz.map(x=>x.t).join(', '));
+ else if(hz.length)flags.push('technical ground on the way ('+hz.map(x=>x.t).join(', ')+')');
+ else if(dark)flags.push('arriving after dark');
+ if(rain>=2)flags.push(rain.toFixed(1)+' mm/h rain on the way');
+ return{hz,dark,rain,flags,lvl:(dark&&hz.length?2:hz.length||rain>=2?1:0)};}
+
+function bedScore(b,arr,fromKm){
+ const h=hourOf(arr);
+ let s=0;
+ if(b.sure)s+=100;                                   // somebody is actually there
+ s-=Math.abs(((h-23.5+36)%24)-0)*4;                  // prefer arriving near 23:30
+ const c=bedCold(b,arr);
+ if(c)s-=c.lvl*22;                                   // cold is a real cost, not a veto
+ else if(b.high)s-=18;                               // no forecast: altitude as a weak proxy
+ if(b.escape_km!=null&&b.high)s-=Math.min(30,b.escape_km*0.8);  // committed if it turns
+ const r=reachRisk(fromKm,b,arr); s-=r.lvl*14;
+ const d=b.km-fromKm; if(d<5)s-=50;                  // too close to be a night's riding
+ return s;}
+
+/* The plan for the next `nights` nights, recomputed from where he is now. */
+function nightPlan(nights){
+ const slTarget=clamp(+($('#i-sltgt')?$('#i-sltgt').value:4)||4,2.5,7);
+ const st=num('#i-stop'), mf=moveFrac(slTarget,st);
+ let km=S.km, t=new Date(raceClock()), out=[];
+ for(let n=0;n<nights&&km<TOTAL-2;n++){
+  /* candidates: every bed ahead whose arrival lands in the acceptable window */
+  const cands=[];
+  for(const b of BEDS){
+   if(b.km<=km+1)continue;
+   const ch=clockHours(km,b.km,slTarget,st);
+   if(ch>30)break;      // a night can be up to ~24 h off when the last one ended early
+   const arr=new Date(t.getTime()+ch*3600e3);
+   if(!inWindow(hourOf(arr),ARRIVE_FROM,ARRIVE_TO))continue;
+   cands.push({...b,arr,ch,dist:b.km-km,score:bedScore(b,arr,km)});}
+  cands.sort((a,b)=>b.score-a.score);
+
+  /* where would he be at 23:00 if he just rode? — the "no cover" fallback */
+  const nx=new Date(t); nx.setHours(23,0,0,0);
+  if(nx<=t)nx.setDate(nx.getDate()+1);
+  const kmAt23=advance(km,Math.max(0,(nx-t)/3600e3)*mf);
+
+  /* every bed within reach, with how far outside the window it lands */
+  const near=[];
+  for(const b of BEDS){
+   if(b.km<=km+1)continue;
+   const ch2=clockHours(km,b.km,slTarget,st);
+   if(ch2>30)break;
+   const arr2=new Date(t.getTime()+ch2*3600e3), h2=hourOf(arr2);
+   const offBy=inWindow(h2,ARRIVE_FROM,ARRIVE_TO)?0
+     :Math.min(((ARRIVE_FROM-h2)+24)%24, ((h2-ARRIVE_TO)+24)%24);
+   near.push({...b,arr:arr2,ch:ch2,dist:b.km-km,offBy,score:bedScore(b,arr2,km)});}
+  near.sort((a,b)=>a.offBy-b.offBy);
+
+  /* Preference order:
+       1. guaranteed cover in the window, at any altitude
+       2. unverified cover in the window
+       3. if he would otherwise be bivvying ABOVE the limit anyway, an unverified
+          shelter at that altitude or lower — it strictly beats lying in the open,
+          and refusing it on a rule meant to keep him low would be perverse
+       4. bivy
+     The rule exists to stop him PLANNING a night up high, not to stop him using
+     a roof once he is already up there. */
+  const eleAt23=eleAt(kmAt23);
+  /* Best scoring candidate wins outright — no altitude veto. A structure is ruled
+     out only by what it would cost to use, and that is already in the score. */
+  let pick=cands[0]||null;
+  let forced=false;
+  if(!pick&&eleAt23>=ALT_WARN){
+   /* nothing in the window, and lying out high — take a roof up to 90 minutes
+      outside it, because a building beats open ground at the same altitude */
+   const better=near.filter(c=>c.offBy<=1.5).sort((a,b)=>b.score-a.score||a.offBy-b.offBy)[0];
+   if(better){pick=better;forced=true;}}
+  const rejected=[];
+
+  if(pick){pick.cold=bedCold(pick,pick.arr); pick.risk=reachRisk(km,pick,pick.arr);}
+  out.push({n:n+1,fromKm:km,fromT:new Date(t),pick,forced,
+            alts:cands.filter(c=>c!==pick).slice(0,3),
+            rejected,near:near.slice(0,3),kmAt23,eleAt23,none:!pick});
+
+  if(pick){ t=new Date(pick.arr.getTime()+slTarget*3600e3); km=pick.km; }
+  else {    /* no roof: bivy where he stands at 23:00, which the rules allow but
+               the altitude rule still governs where that is */
+            t=new Date(nx.getTime()+slTarget*3600e3); km=kmAt23; }
+ }
+ return out;}
+
+function shelterZone(km){
+ let best=SHELTER_ZONES[0];
+ for(const z of SHELTER_ZONES){if(z[0]<=km)best=z; else break;}
+ return{lvl:best[1],inGap:!!best[2],ele:best[3],
+  txt:['open high ground — assume there is nothing',
+       'yayla country — empty shepherd huts are plausible, not certain',
+       'village country — barns, sheds and empty buildings are findable'][best[1]]};}
+
+/* ── minimum sleep ────────────────────────────────────────────────────────
+   Two different questions, and the cockpit was only answering the first:
+     1. have I slept enough?            (sleep in the last 30 h)
+     2. can I still GET somewhere to sleep?  (how far to the next legal roof)
+   The second is what bites on this route, because between CP1 and CP2 there is
+   400 km with no guaranteed cover at all. */
+function sleepReach(){
+ const slTarget=clamp(+($('#i-sltgt')?$('#i-sltgt').value:4)||4,2.5,7);
+ const st=num('#i-stop');
+ const legal=BEDS.filter(b=>b.km>S.km+0.5);
+ const sure=BEDS.filter(b=>b.km>S.km+0.5&&b.sure);
+ const n1=legal[0]||null, s1=sure[0]||null;
+ return{
+  next:n1?{...n1,h:clockHours(S.km,n1.km,slTarget,st),eta:new Date(raceClock().getTime()+clockHours(S.km,n1.km,slTarget,st)*3600e3)}:null,
+  sure:s1?{...s1,h:clockHours(S.km,s1.km,slTarget,st),eta:new Date(raceClock().getTime()+clockHours(S.km,s1.km,slTarget,st)*3600e3)}:null,
+  gap:NOCOVER.find(d=>d.b>S.km&&d.a<=S.km+1)||null};}
+
+/* ── resupply, live ───────────────────────────────────────────────────────── */
+function resupAt(km){return RESUP.find(r=>Math.abs(r.km-km)<0.05);}
+function nextResup(km,cats){
+ return RESUP.filter(r=>r.km>km+0.1&&(!cats||cats.includes(r.cat)));}
+function openAtHour(r,d){const[o,c]=r.open,h=hourOf(d);return c>=24?true:(h>=o&&h<c);}
+function confidentAt(r,d){const[o,c]=r.conf,h=hourOf(d);return c>=24?true:(h>=o&&h<c);}
+function resupPlan(){
+ const slTarget=clamp(+($('#i-sltgt')?$('#i-sltgt').value:4)||4,2.5,7);
+ const st=num('#i-stop');
+ const list=nextResup(S.km).slice(0,8).map(r=>{
+  const ch=clockHours(S.km,r.km,slTarget,st);
+  const eta=new Date(raceClock().getTime()+ch*3600e3);
+  return{...r,ch,eta,nowOpen:openAtHour(r,eta),conf_ok:confidentAt(r,eta),dist:r.km-S.km};});
+ const nextComp=list.find(r=>r.cat==='COMPULSORY')||
+   nextResup(S.km,['COMPULSORY']).slice(0,1).map(r=>{
+    const ch=clockHours(S.km,r.km,slTarget,st);
+    const eta=new Date(raceClock().getTime()+ch*3600e3);
+    return{...r,ch,eta,nowOpen:openAtHour(r,eta),conf_ok:confidentAt(r,eta),dist:r.km-S.km};})[0];
+ return{list,nextComp};}
+
+/* ── "check the phone" prompts, for the Garmin notes and the in-app buzz ──
+   A decision needs notice proportional to how hard it is to reverse. A shop you
+   can turn round for needs none; a 184 km gap needs an hour of thinking time. */
+function decisionLead(r){
+ if(r.cat==='COMPULSORY')return 60;        // minutes of riding before
+ if(r.cat==='IMPORTANT')return 30;
+ return 10;}
+
+
+/* ═════════════════════════ SCENARIOS ═══════════════════════════════════════
+   Three ways the rest of the race can go, recomputed from where he actually is
+   every time the page draws. They differ only on the lever he controls: how
+   many hours a day he is neither riding nor asleep. */
+/* SCEN is injected per rider — the three cases mean different things
+   for a rider with 8 h of margin and one with 40. */
+function scenarios(){
+ const t=raceClock(), mov=modelTime(S.km,TOTAL);
+ return SCEN.map(s=>{
+  const r=rideH(s.sl,s.st), fin=new Date(t.getTime()+mov*24/r*3600e3);
+  return{...s,r,fin,buf:(FINCUT-fin)/3600e3,
+   kmday:(TOTAL-S.km)/Math.max((fin-t)/864e5,.01)};});}
+function needRide(){const mov=modelTime(S.km,TOTAL);
+ const avail=(FINCUT-raceClock())/3600e3;
+ return{mov,avail,h:avail>0?mov*24/avail:99};}
+function terSens(){const el=$('#r-ter'), keep=el.value, out=[];
+ for(const t of [1.00,1.05,1.12,1.20,1.25]){
+  el.value=t; const mov=modelTime(S.km,TOTAL);
+  const avail=(FINCUT-raceClock())/3600e3;
+  out.push({t,mov,need:avail>0?mov*24/avail:99});}
+ el.value=keep; return out;}
+function actualStops(){
+ /* what his own numbers say he is doing: elapsed minus riding minus sleep */
+ const el=(raceClock()-START)/3600e3; if(el<6)return null;
+ const movDone=modelTime(0,S.km);
+ const days=el/24, slept=num('#i-slp')/30*24*days;
+ const stops=(el-movDone-slept)/Math.max(days,.01);
+ return{el,movDone,stops:clamp(stops,0,14),days};}
+
+/* ═════════════════════════ STATE ═══════════════════════════════════════════ */
+const S={km:0,log:[],bot:{},bottles:BOT_DEFAULT.map(b=>({...b})),editBot:0,
+ stock:STOCK0(),basket:{},win:6,shop:'bakkal',emerg:1,wx:null,
+ al:{on:0,check:120,eat:30,last:0}};
+BOT_DEFAULT.forEach((b,i)=>S.bot[b.id]=i<2?100:0);
+
+/* ═════════════════════════ TAB 0 — NOW ═════════════════════════════════════
+   One question: what do I do in the next ten minutes. Everything else is
+   reference. The order of the checks below IS the priority order. */
+function tabNow(){
+ const e=expNow(), sh=nextShower(), fp=fuelPlan(), wp=waterPlan(), sc=sleepCmd();
+ const sl=num('#i-slp'), aw=num('#i-awk'), hz=hazAt(S.km), g=nextGap();
+ const sp=effSpeed(), hc=hrCaps(), t=now();
+ const bd=bedsAhead(3);
+
+ let cmd,cls,sub;
+ if(e.band>=3){cmd='SHELTER NOW';cls='r';
+  sub='Felt temperature <b>'+e.teff.toFixed(0)+' °C</b> with rain at '+eleAt(S.km).toFixed(0)+' m. '+
+   (bd.length?'Nearest cover: <b>'+esc(bd[0].n)+'</b>, '+bd[0].dist.toFixed(0)+' km, '+fmtH(bd[0].h)+'.':'No marked cover ahead — use the bivy.')+
+   ' Get dry first, decide second.';}
+ else if(sl<2){cmd='SLEEP NOW';cls='r';sub=sl.toFixed(1)+' h in 30 h. Stop at the next structure — your judgement is already gone.';}
+ else if(e.band===2){cmd='SHELTER AT THE NEXT ROOF';cls='a';
+  sub='Felt '+e.teff.toFixed(0)+' °C in rain. Full waterproofs on now; do not start anything committed. '+
+   (bd.length?esc(bd[0].n)+' in '+bd[0].dist.toFixed(0)+' km.':'');}
+ else if(sh&&sh.h<=2&&sh.mm>=2){cmd='DRESS NOW — RAIN IN '+(sh.h<=1?'<1 h':sh.h+' H');cls='a';
+  sub='<b>'+sh.mm.toFixed(1)+' mm/h</b> arriving around '+hhmm(sh.at.getHours()+sh.at.getMinutes()/60)+
+   ', felt '+sh.teff.toFixed(0)+' °C. Jacket and trousers on <b>before</b> it starts, not after.';}
+ else if(hz.some(h=>h.t==='mud')&&isWet()){cmd='MUD SECTION — EXPECT TO WALK';cls='a';
+  sub='The organiser warns of peanut butter mud here when wet, to CP2 at km 632. Budget double the time and keep the drivetrain alive.';}
+ else if(g&&S.km<=g.a+2&&g.b>S.km&&(fp.cov<1.3||wp.cover<1.15)){cmd='LOAD BEFORE THE GAP';cls='r';
+  sub=(g.b-g.a).toFixed(0)+' km with nothing, +'+g.climb+' m, up to '+g.high+' m. '+
+   (fp.buy>0?'Short <b>'+fp.buy+' g</b> of carbs. ':'')+(wp.short>0?'Short <b>'+(wp.short/1000).toFixed(1)+' L</b> of water.':'');}
+ else if(sl<4){cmd='SLEEP AT THE NEXT ROOF';cls='a';sub=sl.toFixed(1)+' h in 30 h. Take the next covered option below 2,300 m.';}
+ else if(hz.length){cmd=hz[0].t==='hab'?'HIKE-A-BIKE — WALK IT':'CARE — '+hz[0].t.toUpperCase();cls='a';sub=esc(hz[0].n);}
+ else {cmd='RIDE — '+hc.label;cls='g';sub=hc.sub;}
+
+ let h='';
+ if(preRace())h+=`<div class="box b"><b>Pre-race.</b> Gun is Wed 14 Oct 09:00 — ${fmtH((START-now())/3600e3)} away. Projections run off the race clock. Use the clock override on Inputs to rehearse.</div>`;
+ h+=`<div class="cmd ${cls}"><div class="k">⚡ What I do now</div><div class="v">${cmd}</div><div class="s">${sub}</div></div>`;
+
+ h+=`<span class="pill ${e.band>=2?'r':e.band===1?'a':'g'}">Exposure ${e.teff.toFixed(0)}°C felt · ${BANDTXT[e.band]}</span>`;
+ h+=`<span class="pill ${fatigueIdx()>=2?'r':fatigueIdx()===1?'a':'g'}">Fatigue ${fatigueIdx()}/3</span>`;
+ if(hz.length)h+=hz.map(x=>`<span class="pill a">${x.t.toUpperCase()}</span>`).join('');
+
+ /* the four standing questions, always visible, always answered */
+ h+=`<div class="sec">The four questions</div>`;
+ h+=qRow('🌧','Weather','Can I keep riding?',
+   BANDTXT[e.band], e.band>=2?'d':e.band===1?'a':'g',
+   sh?('next rain '+(sh.h===0?'now':'in '+sh.h+' h')+' · '+sh.mm.toFixed(1)+' mm/h')
+     :((S.wx&&S.wx.pts&&S.wx.pts.length)?'nothing significant in 24 h':'no forecast loaded — using what you typed'));
+ h+=qRow('🛏','Sleep','Where is the next roof?',
+   bd.length?(bd[0].dist.toFixed(0)+' km'):'none marked',
+   sl<3?'d':sl<4?'a':'g',
+   bd.length?(esc(bd[0].n)+' · '+fmtH(bd[0].h)+' · '+bd[0].e+' m'):'bivy only');
+ h+=qRow('🍚','Food','Where do I next buy?',
+   fp.d.toFixed(0)+' km', fp.cov>=1.3?'g':fp.cov>=1?'a':'d',
+   esc(fp.f.n.slice(0,30))+' · cover '+Math.round(Math.min(fp.cov,4)*100)+'%');
+ h+=qRow('💧','Water','Where do I next fill?',
+   (wp.w.km-S.km).toFixed(0)+' km', wp.cover>=1.15?'g':wp.cover>=1?'a':'d',
+   esc(wp.w.n.slice(0,30))+' · '+(wp.have/1000).toFixed(1)+' of '+(wp.buf/1000).toFixed(1)+' L');
+
+ /* position */
+ h+=`<div class="sec">Position</div><div class="g3">
+  <div class="met"><div class="ml">Distance</div><div class="mv">${S.km.toFixed(0)}</div><div class="ms">${(S.km/TOTAL*100).toFixed(1)}% · ${(TOTAL-S.km).toFixed(0)} left</div></div>
+  <div class="met b"><div class="ml">Speed</div><div class="mv">${sp.v.toFixed(1)}</div><div class="ms">km/h · ${sp.src}</div></div>
+  <div class="met"><div class="ml">Altitude</div><div class="mv">${eleAt(S.km).toFixed(0)}</div><div class="ms">m</div></div></div>`;
+
+ h+=hrCard(hc);
+
+ /* what is coming in the next 30 km */
+ h+=`<div class="sec">Next 30 km</div><div class="card">${aheadStrip(30)}</div>`;
+
+ /* finish margin, live */
+ const scs=scenarios(), plan=scs[1];
+ h+=`<div class="card"><div class="sec" style="margin-top:0">Finish — cut-off Sat 24 Oct 24:00</div>
+  <div class="g3">${scs.map(s=>`<div class="met ${s.buf>24?'g':s.buf>0?'a':'d'}">
+   <div class="ml">${s.n}</div><div class="mv">${s.buf>0?'+':''}${Math.round(s.buf)}h</div>
+   <div class="ms">${fmtDT(s.fin).slice(0,10)}</div></div>`).join('')}</div>
+  <div class="note">Full breakdown on the Plan tab. These update every time you change your distance.</div></div>`;
+ $('#ck').innerHTML=h;}
+
+function qRow(icon,label,q,ans,cls,sub){
+ const col=cls==='d'?'var(--bad)':cls==='a'?'var(--warn)':'var(--ok)';
+ return `<div class="act" style="border-color:${col}"><div class="ai">${icon}</div>
+  <div class="at"><div class="a1">${label}</div><div class="a2" style="color:${col}">${ans}</div>
+  <div class="a3">${sub}</div></div>
+  <div class="ar"><div class="a3" style="max-width:98px;text-align:right">${q}</div></div></div>`;}
+
+function aheadStrip(km){
+ const a=S.km,b=Math.min(TOTAL,S.km+km);
+ if(b<=a)return '<div class="note">Finish line.</div>';
+ let cl=0; for(let k=a;k<b;k+=0.5)cl+=Math.max(0,eleAt(Math.min(TOTAL,k+0.5))-eleAt(k));
+ const hzs=HAZ.filter(h=>h.b>a&&h.a<b);
+ const cls=CLIMBS.filter(c=>c.b>a&&c.a<b);
+ const pois=POI.filter(p=>p.km>a&&p.km<=b&&p.k!=='view');
+ let h=`<table><tr><td>Climbing</td><td class="r">+${Math.round(cl)} m</td></tr>
+  <tr><td>Modelled time</td><td class="r">${fmtH(modelTime(a,b))}</td></tr>
+  <tr><td>Altitude at ${b.toFixed(0)} km</td><td class="r">${eleAt(b).toFixed(0)} m</td></tr></table>`;
+ if(cls.length)h+=`<div class="note"><b>Climbs:</b> ${cls.map(c=>'km '+c.a+'–'+c.b+' +'+c.gain+' m at '+c.avg+'%').join(' · ')}</div>`;
+ if(hzs.length)h+=`<div style="margin-top:7px">${hzs.map(x=>`<span class="chip ${x.t}">${x.t}</span>`).join('')}
+   <div class="note" style="margin-top:4px">${hzs.map(x=>esc(x.n)).join('<br>')}</div></div>`;
+ if(pois.length)h+=`<div class="note"><b>Stops:</b> ${pois.slice(0,6).map(p=>'km '+p.km.toFixed(0)+' '+esc(p.n.slice(0,22))).join(' · ')}</div>`;
+ if(!cls.length&&!hzs.length&&!pois.length)h+=`<div class="note">Nothing marked — ordinary ground.</div>`;
+ return h;}
+
+/* ═════════════════════════ TAB 1 — WEATHER ═════════════════════════════════ */
+function tabWx(){
+ const e=expNow(), tl=wxTimeline(24), sh=nextShower(), p6=rainPast(6), p24=rainPast(24);
+ let h='';
+ h+=`<div class="cmd ${e.band>=3?'r':e.band===2?'a':e.band===1?'b':'g'}">
+  <div class="k">🌧 Exposure right now</div><div class="v">${BANDTXT[e.band]}</div>
+  <div class="s">Felt <b>${e.teff.toFixed(0)} °C</b> — air ${num('#i-tmp').toFixed(0)} °C, wind ${num('#i-wind').toFixed(0)} m/s, rain ${num('#i-rain').toFixed(1)} mm/h, ${eleAt(S.km).toFixed(0)} m.
+  ${+$('#i-wet').value?'You have told it you are '+(+$('#i-wet').value===2?'soaked':'damp')+' — that is worth about '+wetPenalty(num('#i-rain'),num('#i-wind'),+$('#i-wet').value).toFixed(0)+' °C.':''}</div></div>`;
+
+ if(!S.wx||!S.wx.pts){
+  h+=`<div class="box a"><b>No forecast loaded.</b> ${navigator.onLine?'Tap Update on the Inputs tab.':'No signal — it will pull one automatically when you next have bars.'} Until then the numbers above are what you typed.</div>`;
+ }
+
+ if(sh){
+  h+=`<div class="box ${sh.band>=3?'r':'a'}"><b>⚠ Next weather worth reacting to</b><br>
+   In <b>${sh.h===0?'under an hour':sh.h+' h'}</b>, around ${hhmm(sh.at.getHours()+sh.at.getMinutes()/60)}, near km ${sh.km.toFixed(0)} at ${sh.ele.toFixed(0)} m.<br>
+   <b>${sh.mm.toFixed(1)} mm/h</b>, ${sh.pop}% chance, felt <b>${sh.teff.toFixed(0)} °C</b> → ${BANDTXT[sh.band]}.<br>
+   <b>Dress before it starts.</b> Putting a jacket on once you are already wet does not get you dry.</div>`;
+ } else if(S.wx&&S.wx.pts){
+  h+=`<div class="box g">✓ Nothing above 1.5 mm/h in the next 24 h on the route ahead.</div>`;
+ }
+
+ /* 24 h strip */
+ if(tl.length){
+  const mx=Math.max(1,...tl.map(x=>x.mm));
+  h+=`<div class="sec">Next 24 h along the route</div><div class="card">
+   <div class="wxs">${tl.map(x=>{
+    const ex=exposure(x.t,x.app,x.mm,x.wind,x.ele,+$('#i-wet').value);
+    const col=ex.band>=3?'var(--bad)':ex.band===2?'var(--warn)':x.mm>0.2?'var(--info)':'var(--line)';
+    return `<div class="wxb" style="height:${Math.max(3,x.mm/mx*100)}%;background:${col}" title="+${x.h}h ${x.mm.toFixed(1)}mm"></div>`;}).join('')}</div>
+   <div class="wxl"><span>now</span><span>+6h</span><span>+12h</span><span>+18h</span><span>+24h</span></div>
+   <table style="margin-top:9px"><tr><th>in</th><th>km</th><th class="r">°C felt</th><th class="r">mm/h</th><th class="r">verdict</th></tr>
+   ${tl.filter((x,i)=>i%3===0).map(x=>{const ex=exposure(x.t,x.app,x.mm,x.wind,x.ele,+$('#i-wet').value);
+     return `<tr><td>+${x.h}h</td><td>${x.km.toFixed(0)}</td>
+     <td class="r">${ex.teff.toFixed(0)}</td><td class="r" style="color:${x.mm>=2?'var(--bad)':'inherit'}">${x.mm.toFixed(1)}</td>
+     <td class="r" style="color:${ex.band>=2?'var(--bad)':ex.band===1?'var(--warn)':'var(--ok)'}">${['ride','dress','shelter next','SHELTER'][ex.band]}</td></tr>`;}).join('')}</table>
+   <div class="note">Each hour is forecast for <b>where the model puts you at that hour</b>, not for where you are standing. That is the whole point — it tells you what you are riding into.</div></div>`;}
+
+ /* the rule, visible */
+ h+=`<div class="sec">Shelter or ride through</div><div class="card"><table>
+  <tr><th>Felt temp</th><th>Rain</th><th class="r">Do</th></tr>
+  <tr><td>8 °C and up</td><td>any</td><td class="r" style="color:var(--ok)">Ride. Jacket on.</td></tr>
+  <tr><td>3–8 °C</td><td>under 7 mm/h</td><td class="r" style="color:var(--warn)">Ride, full waterproofs</td></tr>
+  <tr><td>3–8 °C</td><td>7 mm/h+</td><td class="r" style="color:var(--bad)">Shelter at next</td></tr>
+  <tr><td>0–3 °C</td><td>0.5–2.5 mm/h</td><td class="r" style="color:var(--bad)">Shelter at next</td></tr>
+  <tr><td>0–3 °C</td><td>2.5 mm/h+</td><td class="r" style="color:var(--bad)">SHELTER NOW</td></tr>
+  <tr><td>below 0 °C</td><td>any rain</td><td class="r" style="color:var(--bad)">SHELTER NOW</td></tr>
+  <tr><td colspan="2"><b>Dry</b>, felt down to −4 °C</td><td class="r" style="color:var(--warn)">Ride. Dress properly.</td></tr>
+  <tr><td colspan="2"><b>Dry</b>, felt −4 to −10 °C</td><td class="r" style="color:var(--warn)">Shelter at next</td></tr></table>
+  <div class="note"><b>Above 2,000 m every row moves one step stricter; above 2,500 m, two.</b> Not because the weather is worse but because getting out takes longer.
+  <br><br>“Felt” is apparent temperature minus a wet penalty that grows with wind — soaked in 5 m/s costs about 8 °C. The organisers' near-miss was a rider who got wet, got cold, and lost the judgement to fix it. <b>Don't let yourself get cold before reacting</b> is their wording, and it is in the manual for a reason.</div></div>`;
+
+ /* mud state */
+ const mud=HAZ.find(x=>x.t==='mud');
+ if(mud&&S.km<mud.b){
+  const wet=(p24||0)>=10||num('#i-rain')>=2;
+  h+=`<div class="sec">The mud section — km ${mud.a}–${mud.b}</div>
+   <div class="box ${wet?'r':'b'}">${wet?'<b>Likely bad.</b> ':'<b>Probably passable.</b> '}
+   ${p24!=null?'Rain in the last 24 h at your position: <b>'+p24.toFixed(1)+' mm</b>. ':'No rain history loaded. '}
+   The organiser's words: “Real risk of peanut butter mud if wet at various points throughout this section to CP2”.
+   ${wet?'Budget double the time, expect to walk and to stop and clear the drivetrain. Consider sleeping before it and crossing in daylight.':'If it stays dry it rides. Re-check this before you commit at km '+mud.a+'.'}</div>`;}
+
+ h+=`<div class="note tip">Forecast from Open-Meteo, pulled by your phone whenever it has signal — three points along the route ahead, refreshed on signal, on foreground, and every 30 minutes. ${S.wx&&S.wx.fetched?'Last pull '+Math.round((Date.now()-S.wx.fetched)/60000)+' min ago at km '+Math.round(S.wx.atKm)+'.':''}${S.wx&&S.wx.err?' <b>Last attempt failed: '+esc(S.wx.err)+'</b>':''}</div>`;
+ $('#wx').innerHTML=h;}
+
+/* ═════════════════════════ TAB 2 — SLEEP ═══════════════════════════════════ */
+function tabSleep(){
+ const c=sleepCmd(), sl=num('#i-slp'), aw=num('#i-awk'), e=expNow();
+ const R=sleepReach(), plan=nightPlan(4), t=now(), sol=solar(t);
+ let h=`<div class="cmd ${c.cls}"><div class="k">😴 Sleep</div><div class="v">${c.c}</div><div class="s">${c.s}</div></div>`;
+ h+=`<div class="g3">
+  <div class="met ${sl<3?'d':sl<4?'a':''}"><div class="ml">Slept / 30 h</div><div class="mv">${sl.toFixed(1)}</div><div class="ms">h</div></div>
+  <div class="met ${aw>18?'d':''}"><div class="ml">Awake</div><div class="mv">${aw.toFixed(0)}</div><div class="ms">h</div></div>
+  <div class="met ${e.teff<3?'d':''}"><div class="ml">Felt</div><div class="mv">${e.teff.toFixed(0)}</div><div class="ms">°C now</div></div></div>`;
+ h+=`<div class="row"><span class="lbl">Sleep target per night</span><input type="number" id="i-sltgt" value="${($('#i-sltgt')?$('#i-sltgt').value:4)}" step="0.25" min="2.5" max="7" oninput="draw()"></div>`;
+
+ /* can he even reach a legal roof? */
+ if(R.next){
+  const late=hourOf(R.next.eta)>=3&&hourOf(R.next.eta)<ARRIVE_FROM;
+  h+=`<div class="box ${late?'a':'b'}"><b>Next roof you are allowed to use</b><br>
+   <b>${esc(R.next.n)}</b> — km ${R.next.km}, ${(R.next.km-S.km).toFixed(0)} km on, ${R.next.ele} m.<br>
+   Arrive about <b>${fmtDT(R.next.eta)}</b> (${fmtH(R.next.h)} including stops).
+   ${R.next.sure?'<b>Guaranteed</b> — somebody is there.':'Unverified shelter — carry the bivy.'}
+   ${late?'<br><b>That lands outside the 23:00–03:00 window.</b> Either push to it early or stop short.':''}</div>`;
+ } else {
+  h+=`<div class="box r"><b>No marked cover left ahead.</b> Bivy, and pick your spot for shelter from wind and rockfall.</div>`;}
+ if(R.sure&&(!R.next||R.sure.km!==R.next.km)){
+  h+=`<div class="note tip">Next <b>guaranteed</b> cover (somebody contractually there): <b>${esc(R.sure.n)}</b>, km ${R.sure.km}, ${(R.sure.km-S.km).toFixed(0)} km, arrive ${fmtDT(R.sure.eta)}.</div>`;}
+
+ /* the stretch with no guaranteed cover */
+ if(R.gap&&R.gap.km>120){
+  h+=`<div class="box a"><b>You are inside a ${R.gap.km.toFixed(0)} km stretch with no guaranteed cover</b><br>
+   ${esc(R.gap.from)} (km ${R.gap.a.toFixed(0)}) → ${esc(R.gap.to)} (km ${R.gap.b.toFixed(0)}).
+   Anything marked between those is the organiser's rest stop — a hut, a ruin or a wall, and unverified.
+   <b>Plan to sleep out at least once here and carry for it.</b></div>`;}
+
+ /* the four-night plan */
+ h+=`<div class="sec">Where to sleep, next ${plan.length} nights</div>`;
+ for(const p of plan){
+  if(p.pick){
+   const sure=p.pick.sure;
+   h+=`<div class="card" style="border-color:${sure?'var(--ok)':'var(--warn)'};${sure?'background:var(--okbg)':''}">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+     <b style="font-size:14.5px">Night ${p.n} · ${esc(p.pick.n)}</b>
+     <span style="font-size:12.5px;color:var(--ink2);white-space:nowrap">km ${p.pick.km} · ${p.pick.ele} m</span></div>
+    <table style="margin-top:6px">
+     <tr><td>From km ${p.fromKm.toFixed(0)}</td><td class="r">${p.pick.dist.toFixed(0)} km · ${fmtH(p.pick.ch)}</td></tr>
+     <tr><td>Asleep by</td><td class="r">${fmtDT(p.pick.arr)}</td></tr>
+     <tr><td>Cover</td><td class="r" style="color:${sure?'var(--ok)':'var(--warn)'}">${sure?'Guaranteed':'Unverified'}</td></tr>
+     ${p.pick.cold?`<tr><td>Overnight inside</td><td class="r" style="color:${p.pick.cold.lvl>=2?'var(--bad)':p.pick.cold.lvl===1?'var(--warn)':'var(--ok)'}">${p.pick.cold.tNight.toFixed(0)} °C — ${p.pick.cold.verdict}</td></tr>`:''}
+     ${p.pick.high&&p.pick.escape_km!=null?`<tr><td>To get 500 m lower</td><td class="r" style="color:${p.pick.escape_km>20?'var(--warn)':'inherit'}">${p.pick.escape_km} km</td></tr>`:''}</table>
+     ${p.pick.risk&&p.pick.risk.flags.length?`<div class="note" style="color:var(--warn)"><b>Getting there:</b> ${p.pick.risk.flags.join(' · ')}.</div>`:''}
+    ${p.forced?`<div class="note" style="color:var(--warn)"><b>Chosen against the altitude rule, deliberately.</b> At 23:00 you would otherwise be in the open at ${p.eleAt23.toFixed(0)} m. This is ${p.pick.ele} m — no worse, with something to get behind. The rule exists to stop you planning a night up high, not to stop you using a roof once you are already there.</div>`:''}
+    ${!sure?`<div class="note">${esc(p.pick.note||'')} — carry the bivy and do not count on a door.</div>`:''}
+    ${p.alts.length?`<div class="note"><b>If it fails:</b> ${p.alts.map(a=>esc(a.n)+' (km '+a.km+', '+a.ele+' m'+(a.escape_km!=null&&a.high?', '+a.escape_km+' km to descend 500 m':'')+')').join(' · ')}</div>`:''}
+   </div>`;
+  } else {
+   h+=`<div class="card" style="border-color:var(--bad)">
+    <b style="font-size:14.5px">Night ${p.n} · no roof in the window</b>
+    <table style="margin-top:6px">
+     <tr><td>At 23:00 you are near</td><td class="r">km ${p.kmAt23.toFixed(0)} · ${p.eleAt23.toFixed(0)} m</td></tr></table>
+    <div class="note">${p.eleAt23>=ALT_WARN
+      ? '<b style="color:var(--bad)">Open ground at '+p.eleAt23.toFixed(0)+' m.</b> This is the case the rules are about — not a building up high, but no building at all up high. A wet bivy at this altitude in October is how the organisers nearly lost a rider.'
+      : 'Bivy at '+p.eleAt23.toFixed(0)+' m. Pick for wind shelter, and the manual says watch for rockfall.'}
+     ${(()=>{const z=shelterZone(p.kmAt23);
+       return '<br><b>Unmarked cover there:</b> '+z.txt+'.'+(z.lvl>0?' Nothing is mapped — you are looking, not planning.':'');})()}
+     ${p.rejected.length?'<br><b>Ruled out:</b> '+p.rejected.map(r=>esc(r.n)+' ('+r.ele+' m — above the limit and unverified)').join(' · '):''}</div>
+    ${p.near.length?`<div class="note tip"><b>Your two real options:</b><br>
+     ${p.near.map(x=>{const h=hourOf(x.arr);
+       const fin=x.km>=TOTAL-1;
+       const verdict=fin?'<b>that is the finish line</b> — there is no sleep decision left, just go'
+         :x.offBy===0?'in the window':
+         (h<ARRIVE_FROM&&h>ARRIVE_TO)?('<b>'+x.offBy.toFixed(1)+' h too early</b> — stop short and lose the evening')
+         :('<b>'+x.offBy.toFixed(1)+' h too late</b> — you would be riding past 03:30 to make it');
+       return esc(x.n)+' · km '+x.km+' · '+x.ele+' m · '+x.dist.toFixed(0)+' km · arrive '+hhmm(h)+' — '+verdict
+         +(x.high&&x.escape_km!=null?' <b>('+x.escape_km+' km to get 500 m lower)</b>':'');}).join('<br>')}
+     <br><br>Pushing to a roof past 03:30 costs more than it buys on a ten-day race. <b>Stopping short of one is usually the better trade</b> — you get the hours, and you start the next day fresh and closer to a shop.</div>`:''}
+    </div>`;}}
+
+ h+=`<div class="sec">The rules this uses</div><div class="card"><table>
+  <tr><td>Target window</td><td class="r">asleep 23:00 – 03:00</td></tr>
+  <tr><td>High structures</td><td class="r">usable — judged on cold and escape, not height</td></tr>
+  <tr><td>Open ground above ${ALT_WARN} m</td><td class="r" style="color:var(--bad)">avoid</td></tr>
+  <tr><td>Under 2 h in 30 h</td><td class="r">stop at the next structure</td></tr>
+  <tr><td>2–4 h in 30 h</td><td class="r">next covered option</td></tr>
+  <tr><td>Awake over 22 h</td><td class="r">hard lock</td></tr>
+  <tr><td>Felt under 3 °C and raining</td><td class="r" style="color:var(--bad)">cover beats mileage</td></tr>
+  </table><div class="note">Sunset ${hhmm(sol.set)} · sunrise ${hhmm(sol.rise)}.
+  <br><br><b>Abandoned structures.</b> The six joke-named rest stops <i>are</i> the abandoned buildings — shepherd huts, ruins, the old mine. They are exactly the cover you expect to find, and the organiser bothered to mark them, which is the best evidence they exist. Beyond those, nothing is mapped. On the route as a whole: <b>${(()=>{let z=[0,0,0];for(const c of SHELTER_ZONES)z[c[1]]+=5;return z[2];})()} km of village country</b> where barns and sheds are findable, <b>${(()=>{let z=[0,0,0];for(const c of SHELTER_ZONES)z[c[1]]+=5;return z[1];})()} km of yayla</b> where empty huts are plausible, and <b>${(()=>{let z=[0,0,0];for(const c of SHELTER_ZONES)z[c[1]]+=5;return z[0];})()} km of open high ground</b> where there is nothing. Zones come from the organiser's own resupply gaps and the altitude, not from a building survey.
+  <br><br><b>"Guaranteed" means somebody is contractually there</b> — a checkpoint, or a town the organiser's own note says has hotels. The six joke-named rest stops are not that, but they are real abandoned structures and they are <b>not ruled out for being high</b>. A building at 2,773 m beats open ground at 1,800 m.
+  <br><br>What altitude costs is computed instead, per night, against the forecast: <b>how cold it will be inside</b> (temperature lapsed to the structure's own height, against a system specified to −5 °C) and <b>how far you must ride to get 500 m lower</b> if it turns. Those two do not track height. The mine buildings at 2,773 m are <b>4 km</b> from relief; Pera Palace at 2,743 m is <b>29 km</b>. Pera Palace is the committing one, and it is not the higher of the two.
+  <br><br>Mandatory kit is a system comfortable at −5 °C with a bag rated +5 °C comfort. That is a survival spec, not a good night.</div></div>`;
+ $('#sl').innerHTML=h;}
+
+/* ═════════════════════════ TAB 3 — FUEL ════════════════════════════════════ */
+function tabFuel(){
+ const fp=fuelPlan(), wp=waterPlan(), w1=stats(1), s6=stats(6), s24=stats(24), all=stats(0);
+ let h='';
+ h+=`<div class="sec">Food → next shop</div><div class="card">
+  <div class="g2">
+   <div class="met ${fp.cov>=1.3?'g':fp.cov>=1?'a':'d'}"><div class="ml">Carb cover</div>
+    <div class="mv">${Math.round(Math.min(fp.cov,4)*100)}${fp.cov>4?'%+':'%'}</div>
+    <div class="ms">${Math.round(fp.haveC)} g carried · ${Math.round(fp.needC)} g needed</div></div>
+   <div class="met b"><div class="ml">Next shop</div><div class="mv">${fp.d.toFixed(0)}</div><div class="ms">km · ${fmtH(fp.h)}</div></div></div>
+  <div style="font-size:13.5px"><b>${esc(fp.f.n)}</b> at km ${fp.f.km}${fp.f.off>300?' · <b style="color:var(--warn)">'+fp.f.off+' m off route</b>':''}</div>
+  ${fp.buy>0?`<div style="font-size:14px;font-weight:800;color:var(--bad);margin-top:6px">Buy ${fp.buy} g of carbs</div>`
+   :`<div style="font-size:14px;color:var(--ok);font-weight:700;margin-top:6px">✓ Covered to the next shop</div>`}</div>`;
+
+ h+=`<div class="sec">Water → next source</div><div class="card">
+  <div class="g2">
+   <div class="met ${wp.cover>=1.15?'g':wp.cover>=1?'a':'d'}"><div class="ml">Water cover</div>
+    <div class="mv">${(()=>{const p=Math.round(wp.cover*100);return p>400?'400%+':p+'%';})()}</div>
+    <div class="ms">${(wp.have/1000).toFixed(2)} L of ${(wp.buf/1000).toFixed(2)} L</div></div>
+   <div class="met b"><div class="ml">Next water</div><div class="mv">${(wp.w.km-S.km).toFixed(0)}</div><div class="ms">km · ${fmtH(wp.h)}</div></div></div>
+  <div style="font-size:13.5px"><b>${esc(wp.w.n)}</b> at km ${wp.w.km}</div>
+  ${wp.over?`<div class="box r" style="margin-top:9px"><b>More than you can carry.</b> ${(wp.buf/1000).toFixed(1)} L needed against ${(wp.cap/1000).toFixed(2)} L of capacity. Fill everything and plan a spring or çeşme en route — filtered. Do not read this as "buy ${(wp.buf/1000).toFixed(1)} L".</div>`
+   :wp.short>0?`<div style="font-size:14px;font-weight:800;color:var(--bad);margin-top:6px">Top up ${(wp.short/1000).toFixed(1)} L before leaving</div>`
+   :`<div style="font-size:14px;color:var(--ok);font-weight:700;margin-top:6px">✓ Covered to the next source</div>`}
+  <div class="note">Turkish villages have mosque taps (şadırvan) and çeşme that run day and night — <b>a shut shop is still water</b>. The manual insists on filtering or treating <b>every</b> source, however clean it looks.</div></div>`;
+
+ if(fp.carry){
+  const c=fp.carry, over=c.wat>botCap()/1000;
+  h+=`<div class="box ${over?'a':'b'}"><b>Committed gap ahead: km ${c.a.toFixed(0)}–${c.b}</b><br>
+   ${fmtH(c.h)} of riding, ${Math.round(c.cho)} g of carbs and ${c.wat.toFixed(1)} L of water at the current rates.
+   ${over?'<b>The water does not fit</b> ('+(botCap()/1000).toFixed(2)+' L capacity). Fill everything and plan a refill on the way.':'Both fit if you leave the last stop full.'}</div>`;}
+
+ /* the categorised ladder — the thing Valerio asked for */
+ {const rp=resupPlan();
+  if(rp.nextComp){
+   const r=rp.nextComp, bad=!r.conf_ok;
+   h+=`<div class="box ${bad?'a':'b'}"><b>⛽ Next COMPULSORY stop — km ${r.km.toFixed(0)}, ${r.dist.toFixed(0)} km on</b><br>
+    ${esc(r.n)}${r.off>300?' · <b>'+r.detour.toFixed(1)+' km round trip off route</b>':''}<br>
+    Opens ${String(r.open[0]).padStart(2,'0')}:00–${String(r.open[1]).padStart(2,'0')}:00 · arrive about <b>${fmtDT(r.eta)}</b>
+    ${r.open[1]>=24?'':(r.open?'':'')}
+    <span style="color:${r.nowOpen&&r.conf_ok?'var(--ok)':'var(--bad)'}">${r.conf_ok?'— should be open':(r.nowOpen?'— open, but at the edge of the day. Do not count on it.':'— SHUT at this arrival time')}</span><br>
+    <b>Why compulsory:</b> ${r.gap.toFixed(0)} km follows with nothing, +${r.gap_climb} m, up to ${r.gap_high} m.<br>
+    <b>If it fails:</b> ${esc(r.cont)}</div>`;}
+  h+=`<div class="sec">Resupply ladder</div><div class="card">`;
+  for(const r of rp.list){
+   const col=r.cat==='COMPULSORY'?'var(--bad)':r.cat==='IMPORTANT'?'var(--warn)':'var(--ink2)';
+   h+=`<div style="padding:9px 0;border-bottom:.5px solid var(--line)">
+    <div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline">
+     <span><span class="chip" style="background:${col};color:#fff">${r.cat[0]}</span>
+      <b style="font-size:13.5px">km ${r.km.toFixed(0)}</b>
+      <span style="font-size:12.5px;color:var(--ink2)"> · ${r.dist.toFixed(0)} km</span></span>
+     <span style="font-size:12px;color:${r.conf_ok?'var(--ok)':'var(--bad)'};white-space:nowrap">
+      ${String(r.open[0]).padStart(2,'0')}–${String(r.open[1]).padStart(2,'0')} · ${hhmm(hourOf(r.eta))}</span></div>
+    <div style="font-size:13px;margin-top:2px">${esc(r.n)}${r.off>300?' <span style="color:var(--warn)">('+r.detour.toFixed(1)+' km detour)</span>':''}</div>
+    ${r.critical?`<div class="box r" style="margin:6px 0 0">${esc(r.cont)}</div>`
+      :r.cat!=='OPTIONAL'?`<div class="note" style="margin-top:3px">${r.gap.toFixed(0)} km to ${esc(r.next)}. ${esc(r.cont)}</div>`:''}
+   </div>`;}
+  h+=`<div class="note"><b>C</b> compulsory — ${RESUP.filter(x=>x.cat==='COMPULSORY').length} on the route, each followed by 90 km or more with nothing.
+   <b>I</b> important — 45 km or more follows, or it is a checkpoint. <b>O</b> optional.
+   <br><br><b>Opening hours are a model, not a fact.</b> Nobody has phoned these shops. Village shops are assumed 07:00–20:00 and only counted on between 09:00 and 18:00; supermarkets 08:00–22:00; checkpoints 24 h per the manual. Treat a shop reached at the edge of its window as shut until you can see the lights on.</div></div>`;}
+
+ h+=`<div class="sec">Rolling intake — fixes batch logging</div><div class="card"><table>
+  <tr><th>window</th><th class="r">carbs</th><th class="r">water</th><th class="r">sodium</th></tr>
+  ${[['1 h',w1],['6 h',s6],['24 h',s24],['all',all]].map(([n,x])=>
+   `<tr><td>${n}</td><td class="r" style="color:${x.cR<choRate()*0.75?'var(--bad)':x.cR>choRate()*1.4?'var(--warn)':'var(--ok)'}">${Math.round(x.cR)} g/h</td>
+    <td class="r">${(x.wR*1000).toFixed(0)} ml/h</td><td class="r">${Math.round(x.naR)} mg/h</td></tr>`).join('')}
+  </table><div class="note">Targets now: <b>${choRate()} g/h</b> carbs · <b>${Math.round(fluidRate()*1000)} ml/h</b> water · <b>${Math.round(naRate())} mg/h</b> sodium.
+  Log a lump when you stop — the 6 h and 24 h rows are the honest ones.</div></div>`;
+
+ h+=`<div class="sec">Log</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px">
+  ${QUICK.map((q,i)=>`<button class="bt sm" onclick="logIt('${q.n}',${q.c},${q.w},${q.na},${q.k})">${q.n}</button>`).join('')}</div>`;
+ h+=`<div class="card"><div class="sec" style="margin-top:0">Catch-up — spread a total back over N hours</div>
+  <div class="row"><span class="lbl">Carbs g</span><input type="number" id="cu-c" value="0" min="0"></div>
+  <div class="row"><span class="lbl">Water ml</span><input type="number" id="cu-w" value="0" min="0"></div>
+  <div class="row"><span class="lbl">Over the last … h</span><input type="number" id="cu-h" value="4" min="1" max="12"></div>
+  <button class="bt" onclick="catchUp()">Add spread back</button></div>`;
+ if(S.log.length){h+=`<div class="sec">Recent</div><div class="card"><table>${S.log.slice(0,10).map(e=>
+  `<tr><td>${esc(e.n)}</td><td class="r">${String(e.t.getHours()).padStart(2,'0')}:${String(e.t.getMinutes()).padStart(2,'0')}</td></tr>`).join('')}</table></div>`;}
+ $('#fu').innerHTML=h;}
+function catchUp(){const c=num('#cu-c'),w=num('#cu-w'),n=Math.max(1,Math.round(num('#cu-h')));
+ if(!c&&!w)return; const t=now();
+ for(let i=0;i<n;i++){S.log.push({n:'catch-up',c:c/n,w:w/n,na:0,k:0,t:new Date(t.getTime()-(i+0.5)*3600e3)});}
+ S.log.sort((a,b)=>b.t-a.t); draw();}
+
+/* ═════════════════════════ TAB 4 — ROUTE ═══════════════════════════════════ */
+function tabRoute(){
+ let h=`<div class="sec">The route</div><div class="card" style="padding:10px">${profSVG()}</div>`;
+ h+=`<div class="g3">
+  <div class="met"><div class="ml">Distance</div><div class="mv">${TOTAL.toFixed(0)}</div><div class="ms">km</div></div>
+  <div class="met"><div class="ml">Climb</div><div class="mv">${(CLIMB/1000).toFixed(1)}k</div><div class="ms">m</div></div>
+  <div class="met b"><div class="ml">High point</div><div class="mv">${HIGH}</div><div class="ms">m at km ${HIGHKM}</div></div></div>`;
+
+ /* surfaces */
+ const st=Object.entries(SURF), tot=st.reduce((a,[,v])=>a+v,0);
+ const sealed=SURF['Road']+SURF['Street']+SURF['State road'];
+ h+=`<div class="sec">Surfaces</div><div class="card">
+  ${st.sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="bar"><span style="width:92px;font-size:12.5px">${k}</span>
+   <div class="bt2"><div class="bf" style="width:${v/tot*100}%;background:${k==='Road'||k==='Street'||k==='State road'?'var(--ink2)':k==='Singletrack'?'var(--bad)':k==='Unknown'?'var(--line2)':'var(--warn)'}"></div></div>
+   <span style="width:86px;text-align:right;font-weight:700;font-size:12.5px">${v.toFixed(0)} km · ${Math.round(v/tot*100)}%</span></div>`).join('')}
+  <div class="note"><b>${Math.round(sealed)} km sealed (${Math.round(sealed/tot*100)}%) against ${Math.round(tot-sealed)} km unsealed (${Math.round((tot-sealed)/tot*100)}%).</b>
+  That split is the single best justification for the 1.25 terrain factor in the engine.
+  <br><br><b>Honest limit:</b> these are route totals from Komoot. Neither the GPX nor the FIT says <i>where</i> each surface is, so the cockpit cannot tell you "the next 12 km are gravel". What it can tell you is where the organiser put a warning — that list is below, and it is better information anyway.</div></div>`;
+
+ /* gradients */
+ h+=`<div class="sec">Gradients</div><div class="card"><table>
+  <tr><th>band</th><th class="r">km</th><th class="r">share</th></tr>
+  ${GRADHIST.filter(g=>g.km>0).map(g=>`<tr><td>${g.lo}% to ${g.hi}%</td><td class="r">${g.km}</td>
+   <td class="r" style="color:${g.lo>=8?'var(--bad)':g.lo>=5?'var(--warn)':'inherit'}">${g.pct}%</td></tr>`).join('')}
+  </table><div class="note"><b>${(GRADHIST.filter(g=>g.lo>=8).reduce((a,g)=>a+g.km,0)).toFixed(0)} km of climbing at 8% or steeper</b>, and ${(GRADHIST.filter(g=>g.lo>=12).reduce((a,g)=>a+g.km,0)).toFixed(0)} km at 12%+. Those are <b>uphill only</b> — counting descents too, ${(GRADHIST.filter(g=>g.lo>=8||g.hi<=-8).reduce((a,g)=>a+g.km,0)).toFixed(0)} km is at 8% or steeper in one direction or the other. On a loaded bike on gravel, most of the uphill 12%+ is walking.</div></div>`;
+
+ /* hazards */
+ h+=`<div class="sec">The organiser's warnings</div><div class="card">
+  ${HAZ.map(x=>`<div style="padding:8px 0;border-bottom:.5px solid var(--line)">
+   <div style="display:flex;justify-content:space-between;gap:8px">
+    <span><span class="chip ${x.t}">${x.t}</span><b style="font-size:13.5px">km ${x.a}${x.b-x.a>1?'–'+x.b:''}</b></span>
+    <span style="font-size:12px;color:var(--ink2);white-space:nowrap">${S.km>x.b?'passed':(x.a-S.km).toFixed(0)+' km'}</span></div>
+   <div style="font-size:13px;margin-top:3px;${S.km>x.b?'opacity:.45':''}">${esc(x.n)}</div></div>`).join('')}
+  <div class="note">These are the organiser's own words from the route file, not my inference. The engine slows the model over them: hike-a-bike is capped at 3.5 km/h, rough ground ×0.6, the mud section ×0.45 when wet.</div></div>`;
+
+ /* climbs */
+ h+=`<div class="sec">Climbs over 300 m</div><div class="card"><table>
+  <tr><th>km</th><th class="r">length</th><th class="r">gain</th><th class="r">avg</th><th class="r">top</th></tr>
+  ${CLIMBS.map(c=>`<tr style="${S.km>c.b?'opacity:.42':''}"><td>${c.a}</td><td class="r">${c.len} km</td>
+   <td class="r">+${c.gain}</td><td class="r" style="color:${c.avg>=8?'var(--bad)':c.avg>=6?'var(--warn)':'inherit'}">${c.avg}%</td>
+   <td class="r">${c.top} m</td></tr>`).join('')}</table></div>`;
+
+ /* gaps */
+ h+=`<div class="sec">Resupply gaps</div><div class="card"><table>
+  <tr><th>from–to</th><th class="r">km</th><th class="r">climb</th><th class="r">high</th></tr>
+  ${GAPS.map(g=>`<tr style="${S.km>g.b?'opacity:.42':''}"><td>${g.a}–${g.b}</td><td class="r" style="color:${g.km>=130?'var(--bad)':g.km>=90?'var(--warn)':'inherit'}">${g.km}</td>
+   <td class="r">+${g.climb}</td><td class="r">${g.high} m</td></tr>`).join('')}</table>
+  <div class="note">Computed from the 66 waypoints in the official file. The two that decide the race: <b>km 84→231, 147 km to CP1 on day one</b>, and <b>km 633→818, 184 km after CP2</b> with 3,729 m of climbing up to 2,908 m.</div></div>`;
+ $('#rt').innerHTML=h;}
+
+function profSVG(){
+ const W=540,H=210,P=8,LB=20,maxE=3400;
+ const x=k=>P+(W-2*P)*k/TOTAL, y=e=>H-LB-P-(e/maxE)*(H-LB-2*P-10);
+ let d='M'+x(PROF[0][0])+','+y(PROF[0][1]);
+ for(let i=1;i<PROF.length;i++)d+=' L'+x(PROF[i][0]).toFixed(1)+','+y(PROF[i][1]).toFixed(1);
+ let s=`<svg viewBox="0 0 ${W} ${H}">`;
+ s+=`<defs><linearGradient id="pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--acc)" stop-opacity=".5"/><stop offset="1" stop-color="var(--acc)" stop-opacity=".04"/></linearGradient></defs>`;
+ for(const g of GAPS)if(g.km>=100)s+=`<rect x="${x(g.a)}" y="${P}" width="${x(g.b)-x(g.a)}" height="${H-LB-2*P}" fill="var(--bad)" opacity=".09"/>`;
+ for(const hz of HAZ)if(hz.t==='hab'||hz.t==='mud')s+=`<rect x="${x(hz.a)}" y="${P}" width="${Math.max(1.5,x(hz.b)-x(hz.a))}" height="${H-LB-2*P}" fill="var(--warn)" opacity=".30"/>`;
+ [1000,2000,3000].forEach(e=>{s+=`<line x1="${P}" y1="${y(e)}" x2="${W-P}" y2="${y(e)}" stroke="currentColor" opacity=".13"/><text x="${P+2}" y="${y(e)-3}" font-size="14" fill="var(--ink2)">${e}m</text>`;});
+ s+=`<path d="${d} L${x(TOTAL)},${H-LB-P} L${x(0)},${H-LB-P} Z" fill="url(#pg)"/><path d="${d}" fill="none" stroke="var(--acc)" stroke-width="1.5"/>`;
+ POI.filter(p=>p.k==='cp').forEach(p=>{s+=`<line x1="${x(p.km)}" y1="${P}" x2="${x(p.km)}" y2="${H-LB-P}" stroke="var(--info)" stroke-width="1" stroke-dasharray="3 3"/><text x="${x(p.km)}" y="${P+11}" font-size="14" font-weight="700" fill="var(--info)" text-anchor="middle">CP</text>`;});
+ POI.filter(p=>p.k==='bed').forEach(p=>{s+=`<circle cx="${x(p.km)}" cy="${y(p.e)}" r="2.6" fill="var(--ok)"/>`;});
+ s+=`<text x="${x(HIGHKM)}" y="${y(HIGH)-5}" font-size="14" fill="var(--warn)" text-anchor="middle" font-weight="700">${HIGH}m</text>`;
+ s+=`<polygon points="${x(S.km)-5},${P} ${x(S.km)+5},${P} ${x(S.km)},${P+9}" fill="var(--warn)"/><line x1="${x(S.km)}" y1="${P+9}" x2="${x(S.km)}" y2="${H-LB-P}" stroke="var(--warn)" stroke-width="1.3"/>`;
+ [0,250,500,750,1000,1250,1438].forEach(k=>s+=`<text x="${x(k)}" y="${H-3}" font-size="14" fill="var(--ink2)" text-anchor="${k===0?'start':k>1400?'end':'middle'}">${k}</text>`);
+ return s+`</svg><div style="display:flex;gap:10px;flex-wrap:wrap;font-size:11.5px;color:var(--ink2);margin-top:5px">
+  <span>🟥 100 km+ resupply gap</span><span>🟧 hike-a-bike / mud</span><span>🟢 covered sleep</span><span>┊ CP</span></div>`;}
+
+/* ═════════════════════════ TAB 5 — PLAN ════════════════════════════════════ */
+function tabPlan(){
+ const scs=scenarios(), act=actualStops(), t=raceClock();
+ let h='';
+ if(preRace()&&S.km>1)h+=`<div class="box a"><b>Rehearsal mode.</b> You have set km ${S.km.toFixed(0)} but the race has not started, so the clock still says ${fmtDT(raceClock())}. Every margin below assumes you covered those ${S.km.toFixed(0)} km in no time at all. Set a clock override on Inputs to rehearse a real moment.</div>`;
+ h+=`<div class="sec">Three ways this ends</div><div class="g3">`;
+ for(const s of scs)h+=`<div class="sc ${s.id==='plan'?'rec':''}">
+  ${s.id==='plan'?'<div style="font-size:11px;color:var(--ok);font-weight:800">★ TARGET</div>':''}
+  <div class="sl">${s.n}</div>
+  <div class="sv" style="color:${s.buf>24?'var(--ok)':s.buf>0?'var(--warn)':'var(--bad)'}">${s.buf>0?'+':''}${Math.round(s.buf)}h</div>
+  <div class="ss">${s.sl} h sleep<br>${s.st} h stops<br>${fmtDT(s.fin).slice(0,10)}</div></div>`;
+ h+=`</div>`;
+
+ h+=`<div class="card"><table>
+  <tr><th>scenario</th><th class="r">riding h/day</th><th class="r">km/day</th><th class="r">finish</th><th class="r">margin</th></tr>
+  ${scs.map(s=>`<tr><td><b>${s.n}</b></td>
+   <td class="r">${s.r.toFixed(1)}</td><td class="r">${s.kmday.toFixed(0)}</td>
+   <td class="r">${fmtDT(s.fin).slice(0,10)}</td>
+   <td class="r" style="color:${s.buf>24?'var(--ok)':s.buf>0?'var(--warn)':'var(--bad)'}">${s.buf>0?'+':''}${Math.round(s.buf)}h</td></tr>
+   <tr><td colspan="5" style="padding-top:0;font-size:12.5px;color:var(--ink2);border-bottom:.5px solid var(--line)">${s.d}</td></tr>`).join('')}
+  </table><div class="note">All three start from <b>km ${S.km.toFixed(0)} at ${fmtDT(t)}</b> and use the real profile, the organiser's hazard slowdowns and today's weather. Change your distance on Inputs and all three move.</div></div>`;
+
+ if(act){
+  const near=scs.reduce((p,c)=>Math.abs(c.st-act.stops)<Math.abs(p.st-act.stops)?c:p);
+  h+=`<div class="box ${act.stops<=4.5?'g':act.stops<=5.5?'a':'r'}"><b>What you are actually doing</b><br>
+   ${fmtH(act.el)} elapsed, ${fmtH(act.movDone)} of it modelled as riding. That leaves about
+   <b>${act.stops.toFixed(1)} h/day</b> off the bike and not asleep — closest to <b>${near.n}</b>.
+   ${act.stops>5?'Every hour you take back is roughly '+Math.round(60*(TOTAL-S.km)/Math.max(TOTAL,1)/6)+' hours of finish margin. This is the lever.':'Hold this.'}</div>`;
+ } else {
+  h+=`<div class="box b">Once you are six hours in, this tab will also show what you are <i>actually</i> doing and which scenario you are living.</div>`;}
+
+ /* the number that actually decides it */
+ {const nr=needRide(), ok=nr.h<=15.5, tight=nr.h<=17;
+  h+=`<div class="cmd ${ok?'g':tight?'a':'r'}"><div class="k">To finish inside the cut-off you need</div>
+   <div class="v">${nr.h.toFixed(1)} h/day on the bike</div>
+   <div class="s">${fmtH(nr.mov)} of riding still to do, ${fmtH(nr.avail)} of clock left.
+   That leaves <b>${(24-nr.h).toFixed(1)} h a day</b> for sleep and every stop combined.
+   ${ok?'Comfortable.':tight?'Thin. At D16 you rode 66% of elapsed time; this asks for '+(nr.h/24*100).toFixed(0)+'%, for three times as long.':'Not achievable at this pace — something has to change.'}</div></div>`;}
+
+ {const ts=terSens();
+  h+=`<div class="sec">How much of this is the terrain factor?</div><div class="card"><table>
+   <tr><th>terrain ÷</th><th class="r">riding left</th><th class="r">h/day needed</th></tr>
+   ${ts.map(x=>`<tr style="${Math.abs(x.t-(num('#r-ter')||1.12))<.01?'font-weight:800':''}"><td>${x.t.toFixed(2)}</td>
+    <td class="r">${fmtH(x.mov)}</td>
+    <td class="r" style="color:${x.need<=15.5?'var(--ok)':x.need<=17?'var(--warn)':'var(--bad)'}">${x.need.toFixed(1)}</td></tr>`).join('')}
+   </table><div class="note"><b>Where 1.12 comes from — measured, not assumed.</b>
+   The speed curve is binned by gradient, and binning loses time. Replayed over D16 itself it predicts
+   52.5 h against the <b>59.7 h he actually spent above 1 km/h</b> — so it needs <b>×1.14 just to reproduce
+   the ride it was built from</b>. That is the anchor.
+   <br><br>Then: is Taurus harder ground than D16? The data says no.
+   Climb per km is the same (24.5 against 24.6 m/km), but <b>D16 had twice as much 12%+ ground and five
+   times as much 16–20%</b>, and on gradients above 5%, <b>59% of his D16 climbing time was under
+   5 km/h</b> — pervasive hike-a-bike. Taurus is 45% sealed road and the organiser marked about 7 km of
+   hike-a-bike in total. So 1.12 is the D16 anchor with a small discount, left deliberately on the
+   conservative side for the 204 km of surface Komoot calls "unknown".
+   <br><br>The old 1.25 came from replaying two winners' times at <i>other</i> races, resting on an assumed
+   1.3–1.5× elite advantage. That was indirect and it was wrong in the pessimistic direction.
+   <br><br><b>Day one settles it properly.</b> Ride to CP1 at km 231, compare your real moving time with the
+   ${fmtH(modelTime(0,231.27))} this says, and set the factor to match. Everything downstream gets honest the moment you do.</div></div>`;}
+
+ h+=`<div class="sec">Where the time goes</div><div class="card"><table>
+  <tr><td>Modelled riding time, start to finish</td><td class="r">${fmtH(modelTime(0,TOTAL))}</td></tr>
+  <tr><td>Still to ride from km ${S.km.toFixed(0)}</td><td class="r">${fmtH(modelTime(S.km,TOTAL))}</td></tr>
+  <tr><td>Total clock available</td><td class="r">${fmtH((FINCUT-START)/3600e3)}</td></tr>
+  <tr><td>Terrain factor</td><td class="r">÷${(num('#r-ter')||1.12).toFixed(2)}</td></tr>
+  <tr><td>Fatigue at ${num('#i-slp').toFixed(1)} h sleep, day ${raceDay()}</td><td class="r">÷${fatigueMult().toFixed(2)}</td></tr>
+  <tr><td>Weather now</td><td class="r">×${(mults().rain*mults().wind).toFixed(2)}</td></tr>
+  </table><div class="note"><b>CP cut-offs are still TBC in the manual</b> — only the finish is fixed, Sat 24 Oct 24:00. If the organisers publish CP times at the briefing, they become binding and this tab needs them.</div></div>`;
+
+ h+=`<div class="sec">Leg splits</div><div class="card"><table>
+  <tr><th>to</th><th class="r">km</th><th class="r">riding</th><th class="r">ETA at PLAN</th></tr>
+  ${POI.filter(p=>p.k==='cp'||p.k==='finish').map(p=>{
+    const mv=modelTime(S.km,p.km), eta=new Date(t.getTime()+mv*24/rideH(4,4.5)*3600e3);
+    return `<tr style="${S.km>p.km?'opacity:.42':''}"><td>${esc(p.n.split(':')[0])}</td><td class="r">${p.km.toFixed(0)}</td>
+     <td class="r">${S.km>p.km?'—':fmtH(mv)}</td><td class="r">${S.km>p.km?'passed':fmtDT(eta)}</td></tr>`;}).join('')}
+  </table></div>`;
+ $('#pl').innerHTML=h;}
+
+/* ═════════════════════════ VESSELS / REMINDERS ═════════════════════════════ */
+function tabVessels(){
+ const bt=bottleTot(), ed=S.editBot;
+ let h=`<div style="display:flex;justify-content:space-between;align-items:center">
+  <span style="font-size:13px;color:var(--ink2)">Total ${(botCap()/1000).toFixed(2)} L · now ${(bt.w/1000).toFixed(2)} L</span>
+  <button class="bt sm gh" onclick="S.editBot=${ed?0:1};draw()">${ed?'Done':'Edit list'}</button></div>`;
+ for(const b of S.bottles){const p=S.bot[b.id]||0;
+  h+=`<div class="card" style="padding:10px 12px;margin-top:8px">
+   <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+    <b style="font-size:14px">${b.mix?'🥤':'💧'} ${esc(b.n)}</b>
+    <span style="font-size:12px;color:var(--ink2);white-space:nowrap">${Math.round(p/100*b.cap)} / ${b.cap} ml</span></div>
+   <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
+    <button class="pm" onclick="bot('${b.id}',-10)">–</button>
+    <div class="bt2" style="flex:1"><div class="bf" style="width:${p}%;background:${b.mix?'var(--warn)':'var(--info)'}"></div></div>
+    <div style="width:40px;text-align:right;font-weight:800">${p}%</div>
+    <button class="pm" onclick="bot('${b.id}',10)">+</button></div>`;
+  if(ed)h+=`<div class="row" style="margin-top:8px"><span class="lbl" style="width:70px">Name</span><input type="text" value="${esc(b.n)}" onchange="botEdit('${b.id}','n',this.value)"></div>
+   <div class="row"><span class="lbl" style="width:70px">ml</span><input type="number" value="${b.cap}" min="0" step="50" onchange="botEdit('${b.id}','cap',this.value)"></div>
+   <div class="row"><span class="lbl" style="width:70px">Contents</span><select onchange="botEdit('${b.id}','mix',this.value)"><option value="0" ${b.mix?'':'selected'}>Water</option><option value="1" ${b.mix?'selected':''}>Carb mix</option></select></div>
+   <button class="bt sm gh" style="color:var(--bad);border-color:var(--bad)" onclick="botDel('${b.id}')">Delete</button>`;
+  h+=`</div>`;}
+ if(ed)h+=`<button class="bt gh" style="width:100%" onclick="botAdd()">+ Add a vessel</button>`;
+ $('#vess').innerHTML=h;}
+function bot(id,d){S.bot[id]=clamp((S.bot[id]||0)+d,0,100);draw();}
+function botEdit(id,k,v){const b=S.bottles.find(x=>x.id===id);if(!b)return;
+ b[k]=k==='cap'?clamp(+v||0,0,6000):k==='mix'?(+v?1:0):String(v).slice(0,54);draw();}
+function botDel(id){S.bottles=S.bottles.filter(x=>x.id!==id);delete S.bot[id];draw();}
+function botAdd(){let i=1;while(S.bottles.some(b=>b.id==='x'+i))i++;
+ S.bottles.push({id:'x'+i,n:'New vessel',cap:500,mix:0});S.bot['x'+i]=0;S.editBot=1;draw();}
+
+let ACTX=null,ALTIMER=null;
+async function alEnable(){
+ try{if('Notification'in window&&Notification.permission!=='granted')await Notification.requestPermission();}catch(e){}
+ try{ACTX=ACTX||new(window.AudioContext||window.webkitAudioContext)();if(ACTX.state==='suspended')await ACTX.resume();}catch(e){}
+ S.al.on=1;S.al.last=Date.now();alArm();draw();}
+function alDisable(){S.al.on=0;if(ALTIMER)clearInterval(ALTIMER);ALTIMER=null;draw();}
+function beep(){try{if(!ACTX)return;const o=ACTX.createOscillator(),g=ACTX.createGain();
+ o.connect(g);g.connect(ACTX.destination);o.frequency.value=880;g.gain.value=0.001;o.start();
+ g.gain.exponentialRampToValueAtTime(0.25,ACTX.currentTime+0.02);
+ g.gain.exponentialRampToValueAtTime(0.0001,ACTX.currentTime+0.5);o.stop(ACTX.currentTime+0.52);}catch(e){}}
+function alFire(kind){
+ const e=expNow(),sh=nextShower();
+ const body=kind==='check'
+  ?'km '+Math.round(S.km)+' · felt '+e.teff.toFixed(0)+'°C · '+BANDTXT[e.band]+(sh?' · rain in '+sh.h+'h':'')
+  :'Eat — '+choRate()+' g/h';
+ try{if('Notification'in window&&Notification.permission==='granted')
+  new Notification(kind==='check'?'BrainCog — check in':'BrainCog — eat',{body,tag:'bc-'+kind,renotify:true});}catch(e){}
+ try{navigator.vibrate&&navigator.vibrate(kind==='check'?[300,120,300]:[180]);}catch(e){}
+ beep();}
+function alArm(){if(ALTIMER)clearInterval(ALTIMER);
+ ALTIMER=setInterval(()=>{if(!S.al.on)return;const n=Date.now();
+  if(n-S.al.last>=S.al.check*60e3){S.al.last=n;alFire('check');}},30e3);}
+function tabAlerts(){
+ const perm=('Notification'in window)?Notification.permission:'unsupported';
+ let h=`<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+  <b>${S.al.on?'🔔 Reminders on':'🔕 Reminders off'}</b>
+  <button class="bt sm ${S.al.on?'gh':''}" onclick="${S.al.on?'alDisable()':'alEnable()'}">${S.al.on?'Turn off':'Turn on'}</button></div>
+  <div class="row" style="margin-top:9px"><span class="lbl">Check every (min)</span><input type="number" value="${S.al.check}" min="20" max="360" onchange="S.al.check=clamp(+this.value||120,20,360);draw()"></div>
+  ${perm==='denied'?'<div class="note" style="color:var(--warn)">Notifications are blocked for this site. The buzz and beep still work while the screen is on.</div>':''}
+  <div class="note"><b>The limit, plainly.</b> While this page is open on screen the buzz is reliable. Once Android freezes the tab — pocket, screen off, hours of riding — no web page can wake itself, and on the plateau there is no signal to push one. So use the alarm pack below, and let the Garmin handle the course points.</div>
+  <button class="bt" style="margin-top:8px" onclick="dlICS()">⬇ Alarm pack (.ics)</button>
+  <button class="bt gh" style="margin-top:8px;margin-left:6px" onclick="alFire('check')">Test buzz</button>
+  <div class="note">Four native phone alarms a day for the 11 race days: 06:30 check, 12:00 check, <b>17:00 shop-and-sleep decision</b> (village shops shut ~20:00), 21:30 night load. Import once into the phone calendar before you fly — they fire offline, whatever the browser is doing.</div></div>`;
+ $('#alx').innerHTML=h;}
+function dlICS(){
+ const pad=n=>String(n).padStart(2,'0');
+ const st=(d,h,m)=>d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(h)+pad(m)+'00';
+ const slots=[[6,30,'Morning check','Weather tab first: what am I riding into today?'],
+  [12,0,'Midday check','Food cover to the next shop. Eat properly if there is a lokanta.'],
+  [17,0,'SHOP + SLEEP DECISION','Village shops shut ~20:00. Decide now: push to the next shop, or load here and stop. Check the roof list.'],
+  [21,30,'Night load','Carbs and water for the night. Where is the next cover?']];
+ let L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//BrainCog//TMR2026//EN','CALSCALE:GREGORIAN'];
+ const now0=new Date();
+ for(let d=0;d<11;d++){const day=new Date(START.getTime()+d*864e5);
+  for(const[h,m,t,desc]of slots){
+   const s=new Date(day.getFullYear(),day.getMonth(),day.getDate(),h,m);
+   if(s<START||s>FINCUT)continue;
+   L.push('BEGIN:VEVENT','UID:bc-'+d+'-'+h+'-'+m+'@braincog',
+    'DTSTAMP:'+st(now0,now0.getHours(),now0.getMinutes()),
+    'DTSTART:'+st(s,h,m),'DTEND:'+st(s,h,m+10>59?h+1:h,(m+10)%60),
+    'SUMMARY:BrainCog · '+t,'DESCRIPTION:'+desc,
+    'BEGIN:VALARM','TRIGGER:PT0M','ACTION:DISPLAY','DESCRIPTION:'+t,'END:VALARM','END:VEVENT');}}
+ L.push('END:VCALENDAR');
+ const b=new Blob([L.join('\r\n')],{type:'text/calendar'});
+ const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='braincog-tmr-alarms.ics';
+ document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);}
+
+function wxCard(){
+ const w=S.wx;
+ let h=`<div class="card" id="wxbox"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+  <b style="font-size:14px">🌤 Auto weather</b><button class="bt sm gh" onclick="fetchWx(1)">${WXBUSY?'…':'Update now'}</button></div>`;
+ if(w&&w.pts&&w.pts.length){
+  const age=(Date.now()-w.fetched)/60000, tl=wxTimeline(1);
+  h+=`<div class="note" style="margin-top:6px">Pulled ${age<2?'just now':Math.round(age)+' min ago'} for km ${Math.round(w.atKm)}, +6 h and +12 h along the route.${age>90?' <b style="color:var(--warn)">Stale.</b>':''}${w.err?' Last refresh failed: '+esc(w.err)+'.':''}</div>`;
+ } else {
+  h+=`<div class="note">${navigator.onLine?'Not loaded yet'+(w&&w.err?' — '+esc(w.err):'')+'. Tap Update.':'No signal. It will pull automatically when you next have bars.'}</div>`;}
+ return h+`<div class="note">Open-Meteo, keyless, straight from this phone. Fills the three boxes below. <b>Your eyes beat the API</b> — type over them whenever the sky disagrees.</div></div>`;}
+
+/* ═════════════════════════ WIRING ══════════════════════════════════════════ */
+function draw(){
+ S.km=clamp(num('#i-km'),0,TOTAL);
+ $('#wxc').innerHTML=wxCard();
+ tabNow();tabWx();tabSleep();tabFuel();tabRoute();tabPlan();tabVessels();tabAlerts();
+ autosave();}
+function show(i){$$('.tb').forEach(b=>b.classList.toggle('on',+b.dataset.t===i));
+ $$('.tc').forEach((c,j)=>c.classList.toggle('on',j===i));window.scrollTo(0,0);}
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('.tb');if(b)show(+b.dataset.t);});
+let THEME_OVR=null,THEME_AUTO=null;
+function applyTheme(){const auto=isDark(new Date())?'night':'day';
+ if(THEME_AUTO!==null&&auto!==THEME_AUTO)THEME_OVR=null;THEME_AUTO=auto;
+ const t=THEME_OVR||auto;document.documentElement.className=t;$('#thm').textContent=t==='night'?'☀':'☾';}
+$('#thm').addEventListener('click',()=>{THEME_OVR=document.documentElement.className==='night'?'day':'night';applyTheme();});
+applyTheme();setInterval(applyTheme,5*60e3);
+function stickTabs(){$('#tabs').style.top=document.querySelector('.hd').offsetHeight+'px';}
+window.addEventListener('resize',stickTabs);
+const INP=['i-km','i-spd','i-hr','i-np','i-ahr','i-tmp','i-wind','i-rain','i-wet','i-slp','i-awk','i-stop','i-gut','i-now','r-kg','r-cho','r-na','r-ter'];
+INP.forEach(id=>{const el=$('#'+id);el.addEventListener('input',draw);el.addEventListener('change',draw);});
+function snapshot(){const inp={};INP.forEach(id=>inp[id]=$('#'+id).value);
+ return{v:'J-2.0',saved:new Date().toISOString(),inp,km:S.km,bot:S.bot,bottles:S.bottles,
+  stock:S.stock,basket:S.basket,emerg:S.emerg,al:S.al,wx:S.wx,
+  log:S.log.slice(0,400).map(l=>({n:l.n,c:l.c,w:l.w,na:l.na,k:l.k,t:l.t.toISOString()}))};}
+function applySnap(d,keepClock){
+ if(d.inp)for(const k in d.inp){if(keepClock&&k==='i-now')continue;if($('#'+k))$('#'+k).value=d.inp[k];}
+ if(d.bot)Object.assign(S.bot,d.bot);
+ if(Array.isArray(d.bottles)&&d.bottles.length)S.bottles=d.bottles;
+ if(d.stock)Object.assign(S.stock,d.stock);
+ if(d.basket)S.basket=d.basket; if(d.emerg!=null)S.emerg=d.emerg;
+ if(d.al)Object.assign(S.al,d.al); if(d.wx)S.wx=d.wx;
+ if(d.log)S.log=d.log.map(l=>({...l,t:new Date(l.t)}));}
+const LSKEY='bc_tmr_j_v2';
+function autosave(){try{localStorage.setItem(LSKEY,JSON.stringify(snapshot()));}catch(e){}}
+$('#b-exp').addEventListener('click',()=>{$('#bk').value=JSON.stringify(snapshot());});
+$('#b-imp').addEventListener('click',()=>{try{applySnap(JSON.parse($('#bk').value),false);draw();
+ alert('Restored.');}catch(e){alert('Could not parse: '+e.message);}});
+try{const s=localStorage.getItem(LSKEY);if(s)applySnap(JSON.parse(s),true);}catch(e){}
+draw();stickTabs();
+if(S.al.on)alArm();
+window.addEventListener('online',()=>{draw();fetchWx(0);});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)fetchWx(0);});
+setTimeout(()=>fetchWx(0),1200);
+setInterval(()=>fetchWx(0),30*60e3);
+(function(){const b=document.getElementById('offl');
+ if(!('serviceWorker'in navigator)||!/^https?:$/.test(location.protocol)){b.textContent='· local file';return;}
+ navigator.serviceWorker.register('sw.js').then(()=>navigator.serviceWorker.ready).then(()=>{
+  b.textContent='· offline ✓';b.style.color='#8FD082';}).catch(()=>{b.textContent='· offline NOT ready';b.style.color='#FFA197';});
+ try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist();}catch(e){}})();
+</script></body></html>
